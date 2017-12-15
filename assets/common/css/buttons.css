@@ -1,0 +1,21 @@
+#btn_Jogar {
+    margin-top: 375px;
+}
+
+.btn {
+    background-color: #12318e;
+    color: #ffff00;
+    margin-bottom: 5px;
+    font-family: "Arial Black", Gadget, sans-serif;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #ffff00;
+    color: #12318e;
+    font-weight: bold;
+}
+
+#btn_voltar {
+    margin-top: 20px;
+}

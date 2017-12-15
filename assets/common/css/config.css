@@ -1,0 +1,30 @@
+body {
+    background-image: url("../img/menu.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center top;
+    text-align: center;
+}
+
+.card {
+    margin-top: 375px;
+    background-color: #12318e;
+    color: #ffff00;
+    text-align: center;
+}
+
+.titulo {
+    font-size: 40px;
+    font-weight: bold;
+    color: #ffff00;
+}
+
+.paragrafo {
+    font-size: 18px;
+    margin: 10px 10px 10px 10px;
+}
+
+#fim {
+    font-size: 25px;
+    margin: 10px 0px;
+}
