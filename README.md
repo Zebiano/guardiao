@@ -3,17 +3,17 @@ JavaScript Soccer Game
 
 ## Guidelines:
 
-Ainda tou a trabalhar nisto...
-**1. O nome das páginas é de acordo com o seguinte:** `nomeSeparador_nomePagina.html`
-```
-Exemplo: espetaculo_gatunos.html
-```
+**1. Evitem a adição de Id's nos ficheiros `.css` por favor. Em vez criem classes (`.nomeClasse`)**
+
 **2. As páginas HTML devem ser guardadas na pasta** `/pages`
 ```
-Exemplo: /pages/espetaculo_gatunos.html
+Exemplo: /pages/nomePagina.html
 ```
-**3. As imagens têm o seguinte path:** `/assets/common/images/nomeSeparador/nomeImagem.png`
+**3. As imagens têm o seguinte path:** `/assets/common/img/nomeImagem.png`
 ```
-Exemplo: assets/common/images/espetaculo/infoGatunos.png
+Exemplo: assets/common/img/cenario.png
 ```
-**4. Não adicionar navbar nem footer às páginas (apenas colocar as div's)**
+**4. As gifs têm o seguinte path:** `/assets/common/gif/nomeGif.gif`
+```
+Exemplo: assets/common/img/confetti.png
+```
