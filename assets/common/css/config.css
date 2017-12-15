@@ -3,7 +3,6 @@ body {
 }
 
 .bg-image-menu {
-    /*background-image: url("../img/menu.png");*/
     background-image: url("../img/menu.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
