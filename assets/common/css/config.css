@@ -1,9 +1,13 @@
 body {
+    text-align: center;
+}
+
+.bg-image-menu {
+    /*background-image: url("../img/menu.png");*/
     background-image: url("../img/menu.png");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center top;
-    text-align: center;
 }
 
 .card {

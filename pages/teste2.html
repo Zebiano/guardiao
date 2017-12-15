@@ -4,16 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>ARCOS</title>
-    <style>
-        canvas {
-            display: block;
-        }
-    </style>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/common/css/config.css">
+    <link rel="stylesheet" href="/assets/common/css/buttons.css">
 </head>
 
 <body>
 
-    <canvas id="myCanvas" width="1280" height="720" style="border:solid 3px orange; background:url('assets/common/img/cenario.png')">
+    <canvas id="myCanvas" width="1280" height="720" style="border:solid 3px orange; background:url('../assets/common/img/cenario.png')">
         Your browser does not support HTML5 Canvas.
     </canvas>
 
@@ -21,7 +20,9 @@
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext("2d");
 
-        ctx.translate(645,615)
+        console.log(/);
+
+        /*ctx.translate(645,615)
 
         ctx.fillRect(0,0, 100,100)
         function myFunction(e) {
@@ -30,7 +31,7 @@
             console.log('x: ' + x + ' y: ' + y);
         }
         
-        window.addEventListener('click', myFunction)
+        window.addEventListener('click', myFunction)*/
 
     </script>
 </body>
