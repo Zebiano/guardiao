@@ -3,7 +3,7 @@ JavaScript Soccer Game
 
 ## Guidelines:
 
-**1. Evitem a adição de Id's nos ficheiros `.css` por favor. Em vez criem classes (`.nomeClasse`)**
+**1. Evitem a adição de Id's nos ficheiros `.css` por favor. Em vez criem classes (`.nomeClasse`).**
 
 **2. As páginas HTML devem ser guardadas na pasta** `/pages`
 ```
