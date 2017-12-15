@@ -1,7 +1,3 @@
-#btn_Jogar {
-    margin-top: 375px;
-}
-
 .btn {
     background-color: #12318e;
     color: #ffff00;
@@ -16,6 +12,6 @@
     font-weight: bold;
 }
 
-#btn_voltar {
+.btn-voltar {
     margin-top: 20px;
 }

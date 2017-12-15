@@ -7,7 +7,6 @@ body {
 }
 
 .card {
-    margin-top: 375px;
     background-color: #12318e;
     color: #ffff00;
     text-align: center;
@@ -19,12 +18,17 @@ body {
     color: #ffff00;
 }
 
+.margem {
+    margin-top: 375px;
+}
+
 .paragrafo {
     font-size: 18px;
     margin: 10px 10px 10px 10px;
 }
 
-#fim {
+.fim {
     font-size: 25px;
+    font-weight: bold;
     margin: 10px 0px;
 }
