@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Teste</title>
+    <style>
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="myCanvas" width="500" height="400" style="border:solid 3px orange">
+        Your browser does not support HTML5 Canvas.
+    </canvas>
+
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        ctx.translate(canvas.width / 2, 0)
+
+        var timer;
+
+
+        var circulo = {
+
+            x0: 0,
+            y0: 0,
+
+            x1: -20,
+            y1: 120,
+
+            x2: 20,
+            y2: 35,
+
+            x3: 400,
+            y3: 10,
+        };
+
+        var t = 0
+        //equação da curva de bezier
+        var posX = ((1 - t)((1 - t)((1 - t) * circulo.x0 + t * circulo.x1) + t * ((1 - t) * circulo.x1 + t * circulo.x2)) + t * ((1 - t)((1 - t) * circulo.x1 + t * circulo.x2) + t * ((1 - t) * circulo.x2 + t * circulo.x3)));
+        var posY = (1 - t)((1 - t)((1 - t) * circulo.y0 + t * circulo.y1) + t * ((1 - t) * circulo.y1 + t * circulo.y2)) + t * ((1 - t)((1 - t) * circulo.y1 + t * circulo.y2) + t * ((1 - t) * circulo.y2 + t * circulo.y3));
+
+        var vY = 2;
+
+        var r = 15;
+
+        function desenhar() {
+
+            ctx.clearRect(-canvas.width / 2, 0, canvas.width, canvas.height);
+
+
+            ctx.beginPath();
+            ctx.fillStyle = "Teal"
+            ctx.arc(posX, posY, r, 0, Math.PI * 2)
+            ctx.fill();
+
+            posY += vY
+
+            if (posY == canvas.height)
+                vY = 0
+
+
+
+
+        }
+
+        timer = window.setInterval(desenhar, 10)
+
+
+
+    </script>
+</body>
