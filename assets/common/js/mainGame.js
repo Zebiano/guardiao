@@ -9,36 +9,44 @@ var mouseY;
 // Array para os quadrados
 var arrayQuadrados = [];
 
-function criarQuadrado(x, y, w, h) {
+function Quadrado(x, y, w, h) {
     this.x = x;
     this.y = y;
     this.w = w;
     this.h = h;
     this.selected = false;
-
-    this.isInside
 }
 
-function mouseDown(e) {
-    // obtém as coordenadas do rato dentro do Canvas
-    mouseX = e.pageX - canvas.offsetLeft;
-    mouseY = e.pageY - canvas.offsetTop;
-    // verifica se o rato se encontra posicionado em algum rectângulo
-    for (var i = 0; i < arrayQuadrados.length; i++) {
-        if (arrayQuadrados[i].isInside(mouseX, mouseY)) {
-            arrayQuadradosr[i].selected = true;
-            //ativa evento MouseMove
-            canvas.addEventListener('mousemove', mouseMove);
-        }
-    }
+function criarQuadrado() {
+    arrayQuadrados.push(new Quadrado(357, 81, 189, 97));
+    arrayQuadrados.push(new Quadrado(357, 176, 189, 97));
+    arrayQuadrados.push(new Quadrado(357, 271, 189, 97));
+    arrayQuadrados.push(new Quadrado(544, 81, 189, 97));
+    arrayQuadrados.push(new Quadrado(544, 176, 189, 97));
+    arrayQuadrados.push(new Quadrado(544, 271, 189, 97));
+    arrayQuadrados.push(new Quadrado(731, 81, 189, 97));
+    arrayQuadrados.push(new Quadrado(731, 176, 189, 97));
+    arrayQuadrados.push(new Quadrado(731, 271, 189, 97));
 }
 
 function click(e) {
     mouseX = e.pageX - canvas.offsetLeft;
     mouseY = e.pageY - canvas.offsetTop;
-    ctx.fillText('x: ' + mouseX + ' y: ' + mouseY, 0, 100);
     console.log('x: ' + mouseX + ' y: ' + mouseY);
+
+    for (var i = 0; i < arrayQuadrados.length; i++) {
+        if ((arrayQuadrados[i].x < mouseX) && ((arrayQuadrados[i].w + arrayQuadrados[i].x) > mouseX)) {
+            if ((arrayQuadrados[i].y < mouseY) && ((arrayQuadrados[i].h + arrayQuadrados[i].y) > mouseY)) {
+                arrayQuadrados[i].selected = true;
+            }
+        } else {
+            arrayQuadrados[i].selected = false;
+        }
+        console.log("i: " + arrayQuadrados[i].selected);
+    }
 }
 
-canvas.addEventListener('mousedown', mouseDown);
+// ((arrayQuadrados[i].x < pointerX && arrayQuadrados[i].w + arrayQuadrados[i].x > pointerX) && ((arrayQuadrados[i].y < pointerY && arrayQuadrados[i].y + arrayQuadrados[i].y > pointerY)))
+
+criarQuadrado();
 canvas.addEventListener('click', click); //evento clique do rato
