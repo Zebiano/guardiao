@@ -35,3 +35,7 @@ body {
     font-weight: bold;
     margin: 10px 0px;
 }
+
+canvas {
+    background-image: url("../img/cenario.png");
+}
