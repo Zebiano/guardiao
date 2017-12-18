@@ -1,5 +1,5 @@
 // Variaveis globais
-var developer = true;
+var developer = false;
 
 if (developer == true) {
     // Areas de clique
@@ -14,8 +14,8 @@ if (developer == true) {
     ctx.fillRect(0, 0, 1280, 193);
 
     // Publicidade
-    //ctx.fillStyle = "lightblue";
-    //ctx.fillRect(0, 193, 1280, 74);
+    ctx.fillStyle = "lightblue";
+    ctx.fillRect(0, 193, 1280, 74);
 
     // Bola: X:637 Y:609
     ctx.fillStyle = "black";
