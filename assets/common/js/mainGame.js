@@ -1,45 +1,44 @@
-// Areas de clique
-ctx.beginPath();
+// Variaveis Globais
+var quadrado = 0; // indica o quadrado selecionado pelo utilizador
+var redes = 0; // indica o quadrado selecionado pelo guarda-redes
 
-// Resto do Campo
-ctx.fillStyle = "green";
-ctx.fillRect(0, 267, 1280, 453);
+// Coordenadas do rato
+var mouseX;
+var mouseY;
 
-// Plateia
-ctx.fillStyle = "black";
-ctx.fillRect(0, 0, 1280, 193);
+// Array para os quadrados
+var arrayQuadrados = [];
 
-// Publicidade
-ctx.fillStyle = "lightblue";
-ctx.fillRect(0, 193, 1280, 74);
+function criarQuadrado(x, y, w, h) {
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.selected = false;
 
-// Bola: X:637 Y:609
-ctx.fillStyle = "black";
-ctx.arc(637, 609, 33, 0, Math.PI * 2);
-ctx.fill();
+    this.isInside
+}
 
-// Baliza
-// Toda
-ctx.beginPath();
-ctx.fillStyle = "black";
-ctx.fillRect(357, 81, 562, 287);
+function mouseDown(e) {
+    // obtém as coordenadas do rato dentro do Canvas
+    mouseX = e.pageX - canvas.offsetLeft;
+    mouseY = e.pageY - canvas.offsetTop;
+    // verifica se o rato se encontra posicionado em algum rectângulo
+    for (var i = 0; i < arrayQuadrados.length; i++) {
+        if (arrayQuadrados[i].isInside(mouseX, mouseY)) {
+            arrayQuadradosr[i].selected = true;
+            //ativa evento MouseMove
+            canvas.addEventListener('mousemove', mouseMove);
+        }
+    }
+}
 
-// Quadradoes individuais
-ctx.fillStyle = "red";
-ctx.fillRect(357, 81, 189, 97); // Quadrado 1
-ctx.fillStyle = "blue";
-ctx.fillRect(357, 176, 189, 97); // Quadrado 4
-ctx.fillStyle = "yellow";
-ctx.fillRect(357, 271, 189, 97); // Quadrado 7
-ctx.fillStyle = "yellow";
-ctx.fillRect(544, 81, 189, 97); // Quadrado 2
-ctx.fillStyle = "red";
-ctx.fillRect(544, 176, 189, 97); // Quadrado 5
-ctx.fillStyle = "blue";
-ctx.fillRect(544, 271, 189, 97); // Quadrado 8
-ctx.fillStyle = "red";
-ctx.fillRect(731, 81, 189, 97); // Quadrado 3
-ctx.fillStyle = "blue";
-ctx.fillRect(731, 176, 189, 97); // Quadrado 6
-ctx.fillStyle = "yellow";
-ctx.fillRect(731, 271, 189, 97); // Quadrado 9
+function click(e) {
+    mouseX = e.pageX - canvas.offsetLeft;
+    mouseY = e.pageY - canvas.offsetTop;
+    ctx.fillText('x: ' + mouseX + ' y: ' + mouseY, 0, 100);
+    console.log('x: ' + mouseX + ' y: ' + mouseY);
+}
+
+canvas.addEventListener('mousedown', mouseDown);
+canvas.addEventListener('click', click); //evento clique do rato
