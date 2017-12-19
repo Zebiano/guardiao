@@ -38,45 +38,44 @@ function guardaRedes() {
     console.log("Redes: " + redes);
 }
 
-// 
+// Funcao que ativa no clique do rato
 function click(e) {
     // Receber coordenadas do rato
     mouseX = e.pageX - canvas.offsetLeft;
     mouseY = e.pageY - canvas.offsetTop;
     //console.log('x: ' + mouseX + ' y: ' + mouseY);
 
-    // Ciclo for para percorrer array dos 9 retangulos
+    // Ciclo for para percorrer o array dos quadrados
     for (var i = 0; i < arrayQuadrados.length; i++) {
-        // Ifs para checkar se o clique foi dentro de um dos retangulos
-        if ((arrayQuadrados[i].x < mouseX) && ((arrayQuadrados[i].w + arrayQuadrados[i].x) > mouseX)) {
-            if ((arrayQuadrados[i].y < mouseY) && ((arrayQuadrados[i].h + arrayQuadrados[i].y) > mouseY)) {
-                arrayQuadrados[i].selected = true;
-                // Guarda o quadrado escolhido pelo utilizador
-                escolha = i + 1;
-                console.log("Escolha: " + escolha);
+        // If para checkar se o clique foi dentro de um dos retangulos
+        if (((arrayQuadrados[i].x < mouseX) && ((arrayQuadrados[i].w + arrayQuadrados[i].x) > mouseX)) && ((arrayQuadrados[i].y < mouseY) && ((arrayQuadrados[i].h + arrayQuadrados[i].y) > mouseY))) {
+            arrayQuadrados[i].selected = true;
+            // Guarda o quadrado escolhido pelo utilizador
+            escolha = i + 1;
+            console.log("Escolha: " + escolha);
 
-                if (escolha == redes) {
-                    defesa = true;
-                } else {
-                    defesa = false;
-                }
+            if (escolha == redes) {
+                defesa = true;
+                resultado();
+            } else {
+                defesa = false;
+                resultado();
             }
         }
     }
-    resultado();
 }
 
-// 
+// Define se o utilizador marcou ou nao
 function resultado() {
     if (defesa == true) {
         alert("You lost...");
-        resetVariaveis();
     } else if (defesa == false) {
         alert("You won!");
-        resetVariaveis();
     }
+    resetVariaveis();
 }
 
+// Da reset as variaveis
 function resetVariaveis() {
     var escolha = 0; // Indica o quadrado selecionado pelo utilizador
     var redes = 0; // Indica o quadrado selecionado pelo guarda-redes
