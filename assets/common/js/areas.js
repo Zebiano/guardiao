@@ -1,50 +1,79 @@
 // Variaveis globais
-var developer = false;
+var cmp = false;
+var plt = false;
+var pub = false;
+var bola = false;
+var bal = false;
 
-if (developer == true) {
+function areas(cmp, plt, pub, bola, bal) {
     // Areas de clique
     ctx.beginPath();
 
     // Resto do Campo
-    ctx.fillStyle = "green";
-    ctx.fillRect(0, 267, 1280, 453);
+    if (cmp == true) {
+        ctx.fillStyle = "green";
+        ctx.fillRect(0, 267, 1280, 453);
+    } else if (cmp == false) {
+        ctx.clearRect(0, 267, 1280, 453);
+    }
 
     // Plateia
-    ctx.fillStyle = "black";
-    ctx.fillRect(0, 0, 1280, 193);
+    if (plt == true) {
+        ctx.fillStyle = "black";
+        ctx.fillRect(0, 0, 1280, 193);
+    } else if (plt == false) {
+        ctx.clearRect(0, 0, 1280, 193);
+    }
 
     // Publicidade
-    ctx.fillStyle = "lightblue";
-    ctx.fillRect(0, 193, 1280, 74);
+    if (pub == true) {
+        ctx.fillStyle = "lightblue";
+        ctx.fillRect(0, 193, 1280, 74);
+    } else if (pub == false) {
+        ctx.clearRect(0, 193, 1280, 74);
+    }
 
     // Bola: X:637 Y:609
-    ctx.fillStyle = "black";
-    ctx.arc(637, 609, 33, 0, Math.PI * 2);
-    ctx.fill();
+    if (bola == true) {
+        ctx.fillStyle = "black";
+        ctx.arc(637, 609, 33, 0, Math.PI * 2);
+        ctx.fill();
+    } else if (bola == false) {
+        ctx.fillRect(604, 576, 66, 66);
+        ctx.fillStyle = "green";
+        ctx.fillRect(0, 267, 1280, 453);
+    }
 
     // Baliza
-    // Toda
-    ctx.beginPath();
-    ctx.fillStyle = "black";
-    ctx.fillRect(357, 81, 562, 287);
+    if (bal == true) {
+        // Toda
+        ctx.beginPath();
+        ctx.fillStyle = "black";
+        ctx.fillRect(357, 81, 562, 287);
 
-    // Quadradoes individuais
-    ctx.fillStyle = "red";
-    ctx.fillRect(357, 81, 189, 97); // Quadrado 1
-    ctx.fillStyle = "blue";
-    ctx.fillRect(357, 176, 189, 97); // Quadrado 4
-    ctx.fillStyle = "yellow";
-    ctx.fillRect(357, 271, 189, 97); // Quadrado 7
-    ctx.fillStyle = "yellow";
-    ctx.fillRect(544, 81, 189, 97); // Quadrado 2
-    ctx.fillStyle = "red";
-    ctx.fillRect(544, 176, 189, 97); // Quadrado 5
-    ctx.fillStyle = "blue";
-    ctx.fillRect(544, 271, 189, 97); // Quadrado 8
-    ctx.fillStyle = "red";
-    ctx.fillRect(731, 81, 189, 97); // Quadrado 3
-    ctx.fillStyle = "blue";
-    ctx.fillRect(731, 176, 189, 97); // Quadrado 6
-    ctx.fillStyle = "yellow";
-    ctx.fillRect(731, 271, 189, 97); // Quadrado 9
+        // Quadradoes individuais
+        ctx.fillStyle = "red";
+        ctx.fillRect(357, 81, 189, 97); // Quadrado 1
+        ctx.fillStyle = "blue";
+        ctx.fillRect(357, 176, 189, 97); // Quadrado 4
+        ctx.fillStyle = "yellow";
+        ctx.fillRect(357, 271, 189, 97); // Quadrado 7
+        ctx.fillStyle = "yellow";
+        ctx.fillRect(544, 81, 189, 97); // Quadrado 2
+        ctx.fillStyle = "red";
+        ctx.fillRect(544, 176, 189, 97); // Quadrado 5
+        ctx.fillStyle = "blue";
+        ctx.fillRect(544, 271, 189, 97); // Quadrado 8
+        ctx.fillStyle = "red";
+        ctx.fillRect(731, 81, 189, 97); // Quadrado 3
+        ctx.fillStyle = "blue";
+        ctx.fillRect(731, 176, 189, 97); // Quadrado 6
+        ctx.fillStyle = "yellow";
+        ctx.fillRect(731, 271, 189, 97); // Quadrado 9
+    } else if (bal == false) {
+        ctx.clearRect(357, 81, 562, 287);
+        if (cmp == false && bola == false) {
+            ctx.clearRect(0, 267, 1280, 453);
+        }
+    }
 }

@@ -1,6 +1,7 @@
 // Variaveis Globais
 var escolha = 0; // indica o quadrado selecionado pelo utilizador
 var redes = 0; // indica o quadrado selecionado pelo guarda-redes
+var defesa = false; // Define se o guarda redes conseguiu defender ou nao
 
 // Coordenadas do rato
 var mouseX;
@@ -31,7 +32,7 @@ function criarQuadrado() {
 
 function guardaRedes() {
     redes = Math.floor(Math.random() * 9 + 1);
-    //console.log("Redes: " + redes);
+    console.log("Redes: " + redes);
 }
 
 function click(e) {
@@ -47,14 +48,40 @@ function click(e) {
             if ((arrayQuadrados[i].y < mouseY) && ((arrayQuadrados[i].h + arrayQuadrados[i].y) > mouseY)) {
                 // Guarda o quadrado escolhido pelo utilizador
                 escolha = i + 1;
-                //console.log("Escolha: " + escolha);
+                console.log("Escolha: " + escolha);
             }
         }
     }
+
+    if (escolha == redes) {
+        defesa = true;
+    } else {
+        defesa = false;
+    }
+
+    resultado();
+}
+
+function resultado() {
+    if (defesa == true) {
+        alert("You lost...");
+        resetVariaveis();
+    } else {
+        alert("You won!");
+        resetVariaveis();
+    }
+}
+
+function resetVariaveis() {
+    var escolha = 0; // indica o quadrado selecionado pelo utilizador
+    var redes = 0; // indica o quadrado selecionado pelo guarda-redes
+    var defesa = false; // Define se o guarda redes conseguiu defender ou nao
+    guardaRedes();  
 }
 
 // ((arrayQuadrados[i].x < pointerX && arrayQuadrados[i].w + arrayQuadrados[i].x > pointerX) && ((arrayQuadrados[i].y < pointerY && arrayQuadrados[i].y + arrayQuadrados[i].y > pointerY)))
 
-criarQuadrado();
-guardaRedes();
+criarQuadrado(); // Cria as areas de clique
+guardaRedes(); // Define o quadrado que o guarda-redes ira defender
+
 canvas.addEventListener('click', click); //evento clique do rato
