@@ -78,6 +78,9 @@
 
         var r = 5;
 
+        var imagem = new Image() 
+        imagem.src = '../assets/common/img/bola.png';
+
         function desenhar() {
 
             //ctx.clearRect(-canvas.width / 2, 0, canvas.width, canvas.height);
@@ -86,13 +89,13 @@
 
             ctx.beginPath();
             ctx.fillStyle = "Teal"
-            ctx.arc(posX, posY, r, 0, Math.PI * 2)
+            ctx.drawImage(imagem, posX, posY)
             ctx.fill();
 
-           //posY += vY
-           t += 0.01
-           calc(t);
-           console.log(posX, posY)
+            //posY += vY
+            t += 0.01
+            calc(t);
+            console.log(posX, posY)
 
             if (t >= 1)
                 window.clearInterval(timer)
