@@ -17,3 +17,4 @@ Exemplo: assets/common/img/cenario.png
 ```
 Exemplo: assets/common/img/confetti.png
 ```
+**5. [Como usar os paths](https://www.w3schools.com/html/html_filepaths.asp)**
