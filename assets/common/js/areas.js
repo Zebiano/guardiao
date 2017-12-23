@@ -38,10 +38,6 @@ function areas(cmp, plt, pub, bola, bal) {
         ctx.fillStyle = "black";
         ctx.arc(637, 609, 33, 0, Math.PI * 2);
         ctx.fill();
-    } else if (bola == false) {
-        ctx.fillRect(604, 576, 66, 66);
-        ctx.fillStyle = "green";
-        ctx.fillRect(0, 267, 1280, 453);
     }
 
     // Baliza
