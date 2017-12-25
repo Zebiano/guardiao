@@ -29,18 +29,37 @@
                     Dificuldade
                 </div>
                 <div>
-                    <a name="btn_dificuldade" id="btn_facil" class="btn" href="mainGame.html" role="button">Fácil</a>
+                    <a name="btn_dificuldade" id="btn_facil" class="btn" href="mainGame.html" role="button" onclick="setDificuldade(1)">Fácil</a>
                 </div>
                 <div>
-                    <a name="btn_dificuldade" id="btn_medio" class="btn" href="mainGame.html" role="button">Médio</a>
+                    <a name="btn_dificuldade" id="btn_medio" class="btn" href="mainGame.html" role="button" onclick="dificuldade(2)">Médio</a>
                 </div>
                 <div>
-                    <a name="btn_dificuldade" id="btn_dificil" class="btn" href="mainGame.html" role="button">Difícil</a>
+                    <a name="btn_dificuldade" id="btn_dificil" class="btn" href="mainGame.html" role="button" onclick="dificuldade(3)">Difícil</a>
                 </div>
             </div>
             <div class="col-1"></div>
         </div>
     </div>
+
+    <script>
+        var dificuldade;
+
+        function setDificuldade(e) {
+            dificuldade = e;
+            console.log("SG: " + dificuldade);
+        }
+
+        function getDificuldade() {
+            console.log("hm " + dificuldade);
+            return dificuldade;
+        }
+
+        console.log(dificuldade);
+    </script>
+
+    <!-- JS 
+    <script src="../assets/common/js/config.js"></script> -->
 </body>
 
 </html>

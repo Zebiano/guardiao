@@ -2,6 +2,8 @@
 var escolha = 0; // Indica o quadrado selecionado pelo utilizador
 var redes = 0; // Indica o quadrado selecionado pelo guarda-redes
 var defesa; // Define se o guarda redes conseguiu defender ou nao
+//var dificuldade = getDificuldade();
+console.log(dificuldade);
 
 // Coordenadas do rato
 var mouseX;
@@ -18,32 +20,6 @@ function Quadrado(x, y, w, h) {
     this.h = h;
     this.selected = false;
 }
-/*
-// PUBLICIDADE
-var imagem = new Image() // Criar variavel imagem
-imagem.src = '../assets/common/img/placares.png'; // Atribuir imagem a variavel
-
-// Canto superior esquerdo - onde vamos desenhar a imagem
-var x = 0;
-var y = 0;
-
-// Animação da publicidade
-function publicidade() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height) // Apaga o canvas
-
-    ctx.drawImage(imagem, x, y) //desenha a imagem
-    if (x > 0) {                                                    // Se o x for maior que 0
-        ctx.drawImage(imagem, 1280 - x, 0, x, 720, 0, 0, x, 720)    // Desenhar o bocado da imagem (1290 - x, 0) Que esta fora do canvas No ponto (0,0)
-        x++;
-    }
-    //console.log(x)
-    if (x == 1280) {  //Quando o X chega ao fim da imagem
-        x = 0       //volta a ser 0
-    }
-}
-
-// Chamar a função da publicidade
-var timer = window.setInterval(publicidade, 1000 / 60)*/
 
 // Adiciona os quadrados ao array. Se for para mudar as coordenadas, muda-se aqui
 function criarQuadrado() {
@@ -60,7 +36,15 @@ function criarQuadrado() {
 
 // O Guarda-redes escolhe qual quadrado defender
 function guardaRedes() {
-    redes = Math.floor(Math.random() * 9 + 1);
+    if (dificuldade == 1) {
+        redes = Math.floor(Math.random() * 9 + 1);
+    } else if (dificuldade == 2) {
+        redes = Math.floor(Math.random() * 6 + 1);
+    } else if (dificuldade == 3) {
+        redes = Math.floor(Math.random() * 3 + 1);
+    } else {
+        console.log("Erro na dificuldade.")
+    }
     console.log("Redes: " + redes);
 }
 
@@ -110,6 +94,6 @@ function resetVariaveis() {
 }
 
 criarQuadrado(); // Cria as areas de clique
-guardaRedes(); // Define o quadrado que o guarda-redes ira defender
+//guardaRedes(); // Define o quadrado que o guarda-redes ira defender
 
 canvas.addEventListener('click', click); //evento clique do rato

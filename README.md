@@ -18,3 +18,7 @@ Exemplo: assets/common/img/cenario.png
 Exemplo: assets/common/img/confetti.png
 ```
 **5. [Como usar os paths](https://www.w3schools.com/html/html_filepaths.asp)**
+
+**6. Os scripts das animações são escritos no ficheiro `/assets/common/js/animacoes.js`**
+
+**7. Os scripts que necessitam de ser chamados sem ter o canvas são escritos no ficheiro `/assets/common/js/config.js`**
