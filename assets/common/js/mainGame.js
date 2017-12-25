@@ -2,8 +2,8 @@
 var escolha = 0; // Indica o quadrado selecionado pelo utilizador
 var redes = 0; // Indica o quadrado selecionado pelo guarda-redes
 var defesa; // Define se o guarda redes conseguiu defender ou nao
-//var dificuldade = getDificuldade();
-console.log(dificuldade);
+var dificuldade = getDificuldade();
+console.log("Dificuldade: " + dificuldade);
 
 // Coordenadas do rato
 var mouseX;
@@ -36,11 +36,11 @@ function criarQuadrado() {
 
 // O Guarda-redes escolhe qual quadrado defender
 function guardaRedes() {
-    if (dificuldade == 1) {
+    if (dificuldade == "f") {
         redes = Math.floor(Math.random() * 9 + 1);
-    } else if (dificuldade == 2) {
+    } else if (dificuldade == "m") {
         redes = Math.floor(Math.random() * 6 + 1);
-    } else if (dificuldade == 3) {
+    } else if (dificuldade == "d") {
         redes = Math.floor(Math.random() * 3 + 1);
     } else {
         console.log("Erro na dificuldade.")
@@ -94,6 +94,6 @@ function resetVariaveis() {
 }
 
 criarQuadrado(); // Cria as areas de clique
-//guardaRedes(); // Define o quadrado que o guarda-redes ira defender
+guardaRedes(); // Define o quadrado que o guarda-redes ira defender
 
 canvas.addEventListener('click', click); //evento clique do rato

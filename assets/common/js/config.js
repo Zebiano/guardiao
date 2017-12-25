@@ -1,14 +1,23 @@
-// Variaveis globais
 var dificuldade;
 
 function setDificuldade(e) {
-    window.dificuldade = e;
-    console.log("SG: " + dificuldade);
+    if (typeof (Storage) !== "undefined") {
+        dificuldade = e;
+
+        if (dificuldade == 1) {
+            localStorage.setItem("lastname", "f");
+        } else if (dificuldade == 2) {
+            localStorage.setItem("lastname", "m");
+        } else if (dificuldade == 3) {
+            localStorage.setItem("lastname", "d");
+        } else {
+            console.log("fuck you")
+        }
+    } else {
+        alert("Sorry, your browser does not support Web Storage... If you want to play this game you'll need a browser that supports it.");
+    }
 }
 
 function getDificuldade() {
-    console.log("hm " + dificuldade);
-    return dificuldade;
+    return localStorage.getItem("lastname");
 }
-
-console.log(dificuldade);
