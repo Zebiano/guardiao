@@ -9,11 +9,14 @@
             display: block;
         }
     </style>
+
+      <!-- CSS -->
+      <link rel="stylesheet" href="../assets/common/css/config.css">
 </head>
 
 <body>
 
-    <canvas id="myCanvas" width="500" height="400" style="border:solid 3px orange">
+    <canvas id="myCanvas" width="1280" height="720" style="border:solid 3px orange;">
         Your browser does not support HTML5 Canvas.
     </canvas>
 
@@ -49,18 +52,18 @@
 
         var circulo = {
 
-            x0: 2,
-            y0: 0.8,
+            x0: 610,
+            y0: 583,
 
-            x1: 159.4,
-            y1: 10.1,
+            x1: 893,
+            y1: 470,
 
-            x2: 129.7,
-            y2: 81.8,
+            x2: 969,
+            y2: 340,
 
-            x3: 80.7,
-            y3: 98.8,
-        };
+            x3: 800,
+            y3: 290,
+        };// Bola: X:637 Y:609
 
         var t = 0
         //equação da curva de bezier
@@ -73,26 +76,22 @@
 
         }
 
-        calc(0);
-        var vY = 2;
-
-        var r = 5;
-
+        
+        
         var imagem = new Image() 
         imagem.src = '../assets/common/img/bola.png';
 
+        
         function desenhar() {
 
-            //ctx.clearRect(-canvas.width / 2, 0, canvas.width, canvas.height);
+           
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 
             ctx.beginPath();
-            ctx.fillStyle = "Teal"
+         
             ctx.drawImage(imagem, posX, posY)
-            ctx.fill();
 
-            //posY += vY
             t += 0.01
             calc(t);
             console.log(posX, posY)
