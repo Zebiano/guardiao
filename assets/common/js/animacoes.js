@@ -3,8 +3,10 @@ var v = 0;
 var posX = 610; // variaçao da bola em X
 var posY = 583; // variaçao da bola em Y
 
-var xPes = 0
-var xPes2 = 0
+var yPes = 0
+var yPes2 = 0
+var vPes = 0.8
+var vPes2 = 0.5
 
 var imagem = new Image() // Criar variavel imagem
 imagem.src = '../assets/common/img/placares.png'; // Atribuir imagem a variavel
@@ -13,11 +15,8 @@ baliza.src = '../assets/common/img/baliza.png'; // Atribuir imagem a variavel
 // Bola
 var bolita = new Image()
 bolita.src = '../assets/common/img/bola.png';
-var pessoas1 = new Image()
-pessoas1.src = '../assets/common/img/pessoas.png';
-var pessoas2 = new Image()
-pessoas2.src = '../assets/common/img/pessoas2.png';
-
+var pessoas = new Image()
+pessoas.src = '../assets/common/img/pessoas_completo.png';
 
 // Desenho da Bola
 function desenhar(ponto1, ponto2, ponto3, ponto4, ponto5, ponto6, ponto7, ponto8) {
@@ -65,8 +64,9 @@ function animPublicidade() {
     function publicidade() {
         ctx.clearRect(0, 0, canvas.width, canvas.height) // Apaga o canvas
 
+        ctx.drawImage(pessoas, 0, yPes)
         ctx.drawImage(imagem, x, y) //desenha a imagem
-       
+
         if (x > 0) {                                                    // Se o x for maior que 0
             ctx.drawImage(imagem, 1280 - x, 0, x, 720, 0, 0, x, 720)    // Desenhar o bocado da imagem (1290 - x, 0) Que esta fora do canvas No ponto (0,0)
         }
@@ -75,28 +75,26 @@ function animPublicidade() {
         if (x == 1280) {  //Quando o X chega ao fim da imagem
             x = 0       //volta a ser 0
         }
-        ctx.drawImage(pessoas1, xPes, 0)
-        ctx.drawImage(pessoas2, xPes2, 0)
+        
         ctx.drawImage(baliza, 0, 0) //desenha a imagem
         ctx.drawImage(bolita, posX, posY)
-        
+
+        yPes -= vPes
+        if (yPes <= -10)
+            vPes = -vPes
+        else if (yPes >= 0)
+            vPes = -vPes
+
+
+
     }
-  
-    
-
-
     // Chamar a função da publicidade
     var timer = window.setInterval(publicidade, 1000 / 60)
 }
 
-// Animacao da plateia
-function animPlateia() {
-    // TO DO
-}
 
 
 
 //animBola();
 //animRedes();
 animPublicidade();
-animPlateia();

@@ -69,7 +69,6 @@ function click(e) {
                 resultado();
             } else {
                 defesa = false;
-                animPlateia()
                 resultado();
             }
         }
