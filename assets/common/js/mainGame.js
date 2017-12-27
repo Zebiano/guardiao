@@ -72,7 +72,39 @@ function click(e) {
                 resultado();
             }
         }
+
     }
+    // Atribuir movimento da bola a cada escolha
+    if (escolha == 1) {
+        timerBola = window.setInterval(function () { desenhar(610, 583, 368, 450, 280, 186, 429, 110) }, 10)
+    }
+    else if (escolha == 2) {
+        timerBola = window.setInterval(function () { desenhar(610, 583, 485, 444, 390, 216, 625, 110) }, 10)
+    }
+    else if (escolha == 3) {
+        timerBola = window.setInterval(function () { desenhar(610, 583, 843, 520, 975, 113, 800, 110) }, 10)
+    }
+    else if (escolha == 4) {
+        timerBola = window.setInterval(function () { desenhar(610, 583, 474, 520, 355, 340, 429, 195) }, 10)
+    }
+    else if (escolha == 5) {
+        timerBola = window.setInterval(function () { desenhar(610, 583, 841, 410, 466, 331, 625, 195) }, 10)
+    }
+    else if (escolha == 6) {
+        timerBola = window.setInterval(function () { desenhar(610, 583, 830, 547, 954, 306, 800, 195) }, 10)
+    }
+    else if (escolha == 7) {
+        timerBola = window.setInterval(function () { desenhar(610, 583, 479, 564, 456, 259, 429, 290) }, 10)
+    }
+    else if (escolha == 8) {
+        timerBola = window.setInterval(function () { desenhar(610, 583, 700, 476, 690, 352, 625, 290) }, 10)
+    }
+    else if (escolha == 9) {
+        timerBola = window.setInterval(function () { desenhar(610, 583, 893, 470, 969, 340, 800, 290) }, 10)
+    }
+
+
+
 }
 
 // Define se o utilizador marcou ou nao

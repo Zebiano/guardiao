@@ -3,15 +3,10 @@ var v = 0;
 var posX = 610; // variaçao da bola em X
 var posY = 583; // variaçao da bola em Y
 
-/* // Curva de Bezier
-function calc(v, x0, y0, x1, y1, x2, y2, x3, y3) {
-    posX = ((1 - v) * ((1 - v) * ((1 - v) * x0 + v * x1) + v * ((1 - v) * x1 + v * x2)) + v * ((1 - v) * ((1 - v) * x1 + v * x2) + v * ((1 - v) * x2 + v * x3)));
-    posY = (1 - v) * ((1 - v) * ((1 - v) * y0 + v * y1) + v * ((1 - v) * y1 + v * y2)) + v * ((1 - v) * ((1 - v) * y1 + v * y2) + v * ((1 - v) * y2 + v * y3));
-} */
 
 // Bola
-var imagem = new Image()
-imagem.src = '../assets/common/img/bola.png';
+var bolita = new Image()
+bolita.src = '../assets/common/img/bola.png';
 
 // Desenho da Bola
 function desenhar(ponto1, ponto2, ponto3, ponto4, ponto5, ponto6, ponto7, ponto8) {
@@ -25,10 +20,9 @@ function desenhar(ponto1, ponto2, ponto3, ponto4, ponto5, ponto6, ponto7, ponto8
     var x3 = ponto7;
     var y3 = ponto8;
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     ctx.beginPath();
-    ctx.drawImage(imagem, posX, posY)
+    ctx.drawImage(bolita, posX, posY)
 
     v += 0.01
     posX = ((1 - v) * ((1 - v) * ((1 - v) * x0 + v * x1) + v * ((1 - v) * x1 + v * x2)) + v * ((1 - v) * ((1 - v) * x1 + v * x2) + v * ((1 - v) * x2 + v * x3)));
@@ -38,12 +32,9 @@ function desenhar(ponto1, ponto2, ponto3, ponto4, ponto5, ponto6, ponto7, ponto8
     if (v >= 1)
         window.clearInterval(timerBola)
 
-   
+
 }
-  // Atribuir movimento da bola a cada escolha
-  if (escolha == 1) {
-    var timerBola = window.setInterval(desenhar(610, 583, 368, 450, 280, 186, 429, 110), 10)
-}
+
 
 
 // Animacao do guarda-redes
@@ -78,7 +69,9 @@ function animPublicidade() {
         }
         ctx.drawImage(baliza, 0, 0) //desenha a imagem
     }
+    ctx.drawImage(bolita, posX, posY)
 
+    
     // Chamar a função da publicidade
     var timer = window.setInterval(publicidade, 1000 / 60)
 }
