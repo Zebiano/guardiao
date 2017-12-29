@@ -1,7 +1,7 @@
 // Animacao da bola
 var v = 0;
-var posX = 610; // variaçao da bola em X
-var posY = 583; // variaçao da bola em Y
+var posBolaX = 610; // variaçao da bola em X
+var posBolaY = 583; // variaçao da bola em Y
 
 var yPes = 0
 var yPes2 = 0
@@ -19,8 +19,7 @@ var pessoas = new Image()
 pessoas.src = '../assets/common/img/pessoas_completo.png';
 
 // Desenho da Bola
-function desenhar(ponto1, ponto2, ponto3, ponto4, ponto5, ponto6, ponto7, ponto8) {
-
+function desenharBola(ponto1, ponto2, ponto3, ponto4, ponto5, ponto6, ponto7, ponto8) {
     var x0 = ponto1;   // pontos da curva
     var y0 = ponto2;
     var x1 = ponto3;
@@ -30,19 +29,21 @@ function desenhar(ponto1, ponto2, ponto3, ponto4, ponto5, ponto6, ponto7, ponto8
     var x3 = ponto7;
     var y3 = ponto8;
 
-
     ctx.beginPath();
-    ctx.drawImage(bolita, posX, posY)
+    ctx.drawImage(bolita, posBolaX, posBolaY)
 
     v += 0.01
-    posX = ((1 - v) * ((1 - v) * ((1 - v) * x0 + v * x1) + v * ((1 - v) * x1 + v * x2)) + v * ((1 - v) * ((1 - v) * x1 + v * x2) + v * ((1 - v) * x2 + v * x3)));
-    posY = (1 - v) * ((1 - v) * ((1 - v) * y0 + v * y1) + v * ((1 - v) * y1 + v * y2)) + v * ((1 - v) * ((1 - v) * y1 + v * y2) + v * ((1 - v) * y2 + v * y3));
+    //console.log("V: " + v);
+    posBolaX = ((1 - v) * ((1 - v) * ((1 - v) * x0 + v * x1) + v * ((1 - v) * x1 + v * x2)) + v * ((1 - v) * ((1 - v) * x1 + v * x2) + v * ((1 - v) * x2 + v * x3)));
+    posBolaY = (1 - v) * ((1 - v) * ((1 - v) * y0 + v * y1) + v * ((1 - v) * y1 + v * y2)) + v * ((1 - v) * ((1 - v) * y1 + v * y2) + v * ((1 - v) * y2 + v * y3));
 
-
-    if (v >= 1)
+    if (v >= 1) {
         window.clearInterval(timerBola)
-
-
+        //Da reset a bola mas e instantaneo
+        posBolaX = 610; // variaçao da bola em X
+        posBolaY = 583; // variaçao da bola em Y
+        v = 0;
+    }
 }
 
 
@@ -54,8 +55,6 @@ function animRedes() {
 
 // Animacao da publicidade
 function animPublicidade() {
-
-
     // Canto superior esquerdo - onde vamos desenhar a imagem
     var x = 0;
     var y = 0;
@@ -75,25 +74,20 @@ function animPublicidade() {
         if (x == 1280) {  //Quando o X chega ao fim da imagem
             x = 0       //volta a ser 0
         }
-        
+
         ctx.drawImage(baliza, 0, 0) //desenha a imagem
-        ctx.drawImage(bolita, posX, posY)
+        ctx.drawImage(bolita, posBolaX, posBolaY)
 
         yPes -= vPes
-        if (yPes <= -10)
+        if (yPes <= -10) {
             vPes = -vPes
-        else if (yPes >= 0)
+        } else if (yPes >= 0) {
             vPes = -vPes
-
-
-
+        }
     }
     // Chamar a função da publicidade
     var timer = window.setInterval(publicidade, 1000 / 60)
 }
-
-
-
 
 //animBola();
 //animRedes();
