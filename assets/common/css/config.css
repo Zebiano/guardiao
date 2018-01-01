@@ -1,0 +1,41 @@
+body {
+    text-align: center;
+}
+
+.bg-image-menu {
+    background-image: url("../img/menu.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center top;
+}
+
+.card {
+    background-color: #12318e;
+    color: #ffff00;
+    text-align: center;
+}
+
+.titulo {
+    font-size: 40px;
+    font-weight: bold;
+    color: #ffff00;
+}
+
+.margem {
+    margin-top: 375px;
+}
+
+.paragrafo {
+    font-size: 18px;
+    margin: 10px 10px 10px 10px;
+}
+
+.fim {
+    font-size: 25px;
+    font-weight: bold;
+    margin: 10px 0px;
+}
+
+canvas {
+    background-image: url("../img/relvado.png");
+}
