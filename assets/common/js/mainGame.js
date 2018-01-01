@@ -36,14 +36,14 @@ function criarQuadrado() {
 
 // O Guarda-redes escolhe qual quadrado defender
 function guardaRedes(e) {
-    if (dificuldade == "f") {
+    if (dificuldade == "e") {
         redes = randomQuadrado(9, 1);
     } else if (dificuldade == "m") {
         redes = randomQuadrado(6, e);
-    } else if (dificuldade == "d") {
+    } else if (dificuldade == "h") {
         redes = randomQuadrado(3, e);
     } else {
-        console.log("Erro na dificuldade.")
+        console.log("Erro na dificuldade. Ou então o browser do utilizador nao suporta localStorage e o jogo foi lancado em 'easy'.")
     }
     console.log("Redes: " + redes);
 }
