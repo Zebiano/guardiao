@@ -17,7 +17,7 @@ function setDificuldade(e) {
             console.log("A dificuldade nao funcionou...")
         }
     } else {
-        alert("Sorry, your browser does not support Web Storage... If you want to play this game you'll need a browser that supports it.");
+        alert("Sorry, your browser does not support Web Storage... If you want to play this game you'll need a browser that supports it. You can still play it on the 'easy' difficulty though!");
     }
 }
 

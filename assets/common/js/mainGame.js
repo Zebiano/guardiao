@@ -40,10 +40,8 @@ function guardaRedes(e) {
         redes = randomQuadrado(9, 1);
     } else if (dificuldade == "m") {
         redes = randomQuadrado(6, e);
-        //redes = Math.floor(Math.random() * 6 + 1);
     } else if (dificuldade == "d") {
         redes = randomQuadrado(3, e);
-        //redes = Math.floor(Math.random() * 3 + 1);
     } else {
         console.log("Erro na dificuldade.")
     }
@@ -55,8 +53,24 @@ function randomQuadrado(numQ, num) {
     if (numQ == 9) {
         return Math.floor(Math.random() * numQ + num);
     } else if (numQ == 6) {
+        //console.log(num);
         switch (num) {
-            case 1 || 2 || 3 || 4 || 5 || 6:
+            case 1:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 2:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 3:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 4:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 5:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 6:
                 return Math.floor(Math.random() * numQ + 1);
                 break;
             case 7:
@@ -72,11 +86,17 @@ function randomQuadrado(numQ, num) {
                 console.log("O redes ta a espera da escolha do jogador");
                 break;
             default:
-                console.log("Erro na funcao randomQuadrado Numero: " + num);
+                console.log("Erro na funcao randomQuadrado. Numero: " + num);
         }
     } else if (numQ == 3) {
         switch (num) {
-            case 1 || 2 || 3:
+            case 1:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 2:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 3:
                 return Math.floor(Math.random() * numQ + 1);
                 break;
             case 4:
@@ -123,6 +143,7 @@ function click(e) {
             console.log("Escolha: " + escolha);
 
             guardaRedes(escolha);
+            //console.log(redes);
 
             if (escolha == redes) {
                 defesa = true;
@@ -134,7 +155,7 @@ function click(e) {
         }
     }
 
-    // Atribuir movimento da bola a cada escolha
+    /*// Atribuir movimento da bola a cada escolha
     if (escolha == 1) {
         timerBola = window.setInterval(function () { desenharBola(610, 583, 368, 450, 280, 186, 429, 110) }, 10)
     }
@@ -161,7 +182,114 @@ function click(e) {
     }
     else if (escolha == 9) {
         timerBola = window.setInterval(function () { desenharBola(610, 583, 893, 470, 969, 340, 800, 290) }, 10)
+    }*/
+
+    /*// Movimento do guarda redes
+    var guardaRedes = new Image();
+
+    var x = 500;;
+    var y = 100
+    var frameIndex = 0;
+
+    if (redes == 1) {
+        guardaRedes.src = '../assets/common/sprites/keeper/Sprite1.png';
+        guardaRedes.addEventListener('load', function () { window.setInterval(animateguardaRedes, 1000); });
+
+        function animateguardaRedes() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(guardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+            frameIndex++;
+            x += -70;
+        }
     }
+    else if (redes == 2) {
+        guardaRedes.src = '../assets/common/sprites/keeper/Sprite2.png';
+        guardaRedes.addEventListener('load', function () { window.setInterval(animateguardaRedes, 1000); });
+
+        function animateguardaRedes() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(guardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+            frameIndex++;
+            y += -20;
+        }
+    }
+    else if (redes == 3) {
+        guardaRedes.src = '../assets/common/sprites/keeper/Sprite3.png';
+        guardaRedes.addEventListener('load', function () { window.setInterval(animateguardaRedes, 1000); });
+
+        function animateguardaRedes() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(guardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+            frameIndex++;
+            x += 60;
+        }
+    }
+    else if (redes == 4) {
+        guardaRedes.src = '../assets/common/sprites/keeper/Sprite4.png';
+        guardaRedes.addEventListener('load', function () { window.setInterval(animateguardaRedes, 1000); });
+
+        function animateguardaRedes() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(guardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+            frameIndex++;
+            x += -140;
+        }
+    }
+    else if (redes == 5) {
+        guardaRedes.src = '../assets/common/sprites/keeper/Sprite5.png';
+        guardaRedes.addEventListener('load', function () { window.setInterval(animateguardaRedes, 1000); });
+
+        function animateguardaRedes() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(guardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+            frameIndex++;
+            x += 0;
+        }
+    }
+    else if (redes == 6) {
+        guardaRedes.src = '../assets/common/sprites/keeper/Sprite6.png';
+        guardaRedes.addEventListener('load', function () { window.setInterval(animateguardaRedes, 1000); });
+
+        function animateguardaRedes() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(guardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+            frameIndex++;
+            x += 100;
+        }
+    }
+    else if (redes == 7) {
+        guardaRedes.src = '../assets/common/sprites/keeper/Sprite7.png';
+        guardaRedes.addEventListener('load', function () { window.setInterval(animateguardaRedes, 1000); });
+
+        function animateguardaRedes() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(guardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+            frameIndex++;
+            x += -70;
+        }
+    }
+    else if (redes == 8) {
+        guardaRedes.src = '../assets/common/sprites/keeper/Sprite8.png';
+        guardaRedes.addEventListener('load', function () { window.setInterval(animateguardaRedes, 1000); });
+
+        function animateguardaRedes() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(guardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+            frameIndex++;
+            x += -15;
+        }
+    }
+    else if (redes == 9) {
+        guardaRedes.src = '../assets/common/sprites/keeper/Sprite9.png';
+        guardaRedes.addEventListener('load', function () { window.setInterval(animateguardaRedes, 1000); });
+
+        function animateguardaRedes() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(guardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+            frameIndex++;
+            x += 60;
+        }
+    }*/
 }
 
 // Define se o utilizador marcou ou nao
@@ -178,7 +306,7 @@ function resultado() {
 function resetVariaveis() {
     var escolha = 0; // Indica o quadrado selecionado pelo utilizador
     var defesa; // Define se o guarda redes conseguiu defender ou nao
-    guardaRedes(escolha); // O guarda redes escolhe um novo quadrado
+    guardaRedes(undefined); // O guarda redes escolhe um novo quadrado
 }
 
 criarQuadrado(); // Cria as areas de clique
