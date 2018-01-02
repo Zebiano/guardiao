@@ -43,3 +43,469 @@
         guardaRedes.addEventListener('load', function () { window.setInterval(animateguardaRedes, 1500); });
     </script>
 </body>
+
+// Variaveis Globais
+var escolha = 0; // Indica o quadrado selecionado pelo utilizador
+var redes = 0; // Indica o quadrado selecionado pelo guarda-redes
+var defesa; // Define se o guarda-redes conseguiu defender ou nao
+var dificuldade = getDificuldade();
+console.log("Dificuldade: " + dificuldade);
+
+// Coordenadas do rato
+var mouseX;
+var mouseY;
+
+// Array para os quadrados
+var arrayQuadrados = [];
+
+// Construtor dos quadrados
+function Quadrado(x, y, w, h) {
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.selected = false;
+}
+
+// Adiciona os quadrados ao array. Se for para mudar as coordenadas, muda-se aqui
+function criarQuadrado() {
+    arrayQuadrados.push(new Quadrado(357, 81, 189, 97));
+    arrayQuadrados.push(new Quadrado(544, 81, 189, 97));
+    arrayQuadrados.push(new Quadrado(731, 81, 189, 97));
+    arrayQuadrados.push(new Quadrado(357, 176, 189, 97));
+    arrayQuadrados.push(new Quadrado(544, 176, 189, 97));
+    arrayQuadrados.push(new Quadrado(731, 176, 189, 97));
+    arrayQuadrados.push(new Quadrado(357, 271, 189, 97));
+    arrayQuadrados.push(new Quadrado(544, 271, 189, 97));
+    arrayQuadrados.push(new Quadrado(731, 271, 189, 97));
+}
+
+// O Guarda-redes escolhe qual quadrado defender
+function guardaRedes(e) {
+    if (dificuldade == "easy") {
+        redes = randomQuadrado(9, e);
+    } else if (dificuldade == "medium") {
+        redes = randomQuadrado(6, e);
+    } else if (dificuldade == "hard") {
+        redes = randomQuadrado(3, e);
+    } else {
+        console.log("Erro na dificuldade. Ou então o browser do utilizador nao suporta localStorage.")
+    }
+    setGuardaRedes(redes);
+    console.log("Redes: " + redes);
+    //console.log("GetRedes: " + getGuardaRedes());
+}
+
+// Devolve um numero aleatorio consoante a dificuldade
+function randomQuadrado(numQ, num) {
+    if (numQ == 9) {
+        switch (num) {
+            case 1:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 2:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 3:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 4:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 5:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 6:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 7:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 8:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 9:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case undefined:
+                console.log("O redes esta a espera da escolha do jogador");
+                break;
+            default:
+                console.log("Erro na funcao randomQuadrado. Numero: " + num);
+        }
+    } else if (numQ == 6) {
+        switch (num) {
+            case 1:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 2:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 3:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 4:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 5:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 6:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 7:
+                return Math.floor(Math.random() * numQ + 2);
+                break;
+            case 8:
+                return Math.floor(Math.random() * numQ + 3);
+                break;
+            case 9:
+                return Math.floor(Math.random() * numQ + 4);
+                break;
+            case undefined:
+                console.log("O redes esta a espera da escolha do jogador");
+                break;
+            default:
+                console.log("Erro na funcao randomQuadrado. Numero: " + num);
+        }
+    } else if (numQ == 3) {
+        switch (num) {
+            case 1:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 2:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 3:
+                return Math.floor(Math.random() * numQ + 1);
+                break;
+            case 4:
+                return Math.floor(Math.random() * numQ + 2);
+                break;
+            case 5:
+                return Math.floor(Math.random() * numQ + 3);
+                break;
+            case 6:
+                return Math.floor(Math.random() * numQ + 4);
+                break;
+            case 7:
+                return Math.floor(Math.random() * numQ + 5);
+                break;
+            case 8:
+                return Math.floor(Math.random() * numQ + 6);
+                break;
+            case 9:
+                return Math.floor(Math.random() * numQ + 7);
+                break;
+            case undefined:
+                console.log("O redes esta a espera da escolha do jogador");
+                break;
+            default:
+                console.log("Erro na funcao randomQuadrado Numero: " + num);
+        }
+    }
+}
+
+// Funcao que ativa no clique do rato
+function click(e) {
+    // Receber coordenadas do rato
+    mouseX = e.pageX - canvas.offsetLeft;
+    mouseY = e.pageY - canvas.offsetTop;
+    //console.log('x: ' + mouseX + ' y: ' + mouseY);
+
+    // Ciclo for para percorrer o array dos quadrados
+    for (var i = 0; i < arrayQuadrados.length; i++) {
+        // If para checkar se o clique foi dentro de um dos retangulos
+        if (((arrayQuadrados[i].x < mouseX) && ((arrayQuadrados[i].w + arrayQuadrados[i].x) > mouseX)) && ((arrayQuadrados[i].y < mouseY) && ((arrayQuadrados[i].h + arrayQuadrados[i].y) > mouseY))) {
+            // Guarda o quadrado escolhido pelo utilizador
+            arrayQuadrados[i].selected = true;
+            escolha = i + 1;
+            console.log("Escolha: " + escolha);
+
+            // O guarda redes escolhe um quadrado consoante a escolha do jogador
+            guardaRedes(escolha);
+
+            if (escolha == redes) {
+                defesa = true;
+                resultado();
+            } else {
+                defesa = false;
+                resultado();
+            }
+        }
+    }
+
+    // Atribuir movimento da bola a cada escolha
+    switch (escolha) {
+        case 1:
+            timerBola = window.setInterval(function () { animBola(610, 583, 368, 450, 280, 186, 429, 110) }, 10);
+            animGuardaRedes(redes);
+            break;
+        case 2:
+            timerBola = window.setInterval(function () { animBola(610, 583, 485, 444, 390, 216, 625, 110) }, 10);
+            animGuardaRedes(redes);
+            break;
+        case 3:
+            timerBola = window.setInterval(function () { animBola(610, 583, 843, 520, 975, 113, 800, 110) }, 10);
+            animGuardaRedes(redes);
+            break;
+        case 4:
+            timerBola = window.setInterval(function () { animBola(610, 583, 474, 520, 355, 340, 429, 195) }, 10);
+            animGuardaRedes(redes);
+            break;
+        case 5:
+            timerBola = window.setInterval(function () { animBola(610, 583, 841, 410, 466, 331, 625, 195) }, 10);
+            animGuardaRedes(redes);
+            break;
+        case 6:
+            timerBola = window.setInterval(function () { animBola(610, 583, 830, 547, 954, 306, 800, 195) }, 10);
+            animGuardaRedes(redes);
+            break;
+        case 7:
+            timerBola = window.setInterval(function () { animBola(610, 583, 479, 564, 456, 259, 429, 290) }, 10);
+            animGuardaRedes(redes);
+            break;
+        case 8:
+            timerBola = window.setInterval(function () { animBola(610, 583, 700, 476, 690, 352, 625, 290) }, 10);
+            animGuardaRedes(redes);
+            break;
+        case 9:
+            timerBola = window.setInterval(function () { animBola(610, 583, 893, 470, 969, 340, 800, 290) }, 10);
+            animGuardaRedes(redes);
+            break;
+        default:
+            console.log("Erro na animacao da bola.")
+    }
+
+    // Da reset as variaveis
+    resetVariaveis();
+}
+
+// Define se o utilizador marcou ou nao
+function resultado() {
+    if (defesa == true) {
+        alert("You lost...");
+    } else if (defesa == false) {
+        alert("You won!");
+    }
+}
+
+// Da reset as variaveis
+function resetVariaveis() {
+    var escolha = 0; // Indica o quadrado selecionado pelo utilizador
+    var defesa; // Define se o guarda redes conseguiu defender ou nao
+    guardaRedes(undefined); // O guarda redes escolhe um novo quadrado
+}
+
+criarQuadrado(); // Cria as areas de clique
+guardaRedes(); // Define o quadrado que o guarda-redes ira defender
+
+canvas.addEventListener('click', click); //evento clique do rato
+
+animacoes:
+
+// Variaveis Globais
+var redes = getGuardaRedes();
+var dificuldade = getDificuldade();
+
+// Image()
+var imgPublicidade = new Image()
+var imgBaliza = new Image()
+var imgGuardaRedes = new Image();
+var imgBola = new Image()
+var imgPlateia = new Image()
+
+// Image() sources
+imgBaliza.src = '../assets/common/img/baliza.png';
+imgPublicidade.src = '../assets/common/img/placares.png';
+imgBola.src = '../assets/common/img/bola.png';
+imgPlateia.src = '../assets/common/img/pessoas_completo.png';
+
+// Variaveis do canvas
+var canvasX = 0;
+var canvasY = 0;
+
+// Variaveis para a bola
+var bolaV = 0;
+var bolaPosX = 610; // variaçao da bola em X
+var bolaPosY = 583; // variaçao da bola em Y
+
+// Variaveis para a plateia
+var plateiaY = 0
+var plateiaY2 = 0
+var plateiaV = 0.8
+var plateiaV2 = 0.5
+
+// Aniamcao da Bola
+function animBola(curvaPonto1, curvaPonto2, curvaPonto3, curvaPonto4, curvaPonto5, curvaPonto6, curvaPonto7, curvaPonto8) {
+    // Pontos da curva
+    var x0 = curvaPonto1;
+    var y0 = curvaPonto2;
+    var x1 = curvaPonto3;
+    var y1 = curvaPonto4;
+    var x2 = curvaPonto5;
+    var y2 = curvaPonto6;
+    var x3 = curvaPonto7;
+    var y3 = curvaPonto8;
+
+    ctx.beginPath();
+    ctx.drawImage(imgBola, bolaPosX, bolaPosY)
+
+    bolaV += 0.01
+    //console.log("V: " + bolaV);
+
+    bolaPosX = ((1 - bolaV) * ((1 - bolaV) * ((1 - bolaV) * x0 + bolaV * x1) + bolaV * ((1 - bolaV) * x1 + bolaV * x2)) + bolaV * ((1 - bolaV) * ((1 - bolaV) * x1 + bolaV * x2) + bolaV * ((1 - bolaV) * x2 + bolaV * x3)));
+    bolaPosY = (1 - bolaV) * ((1 - bolaV) * ((1 - bolaV) * y0 + bolaV * y1) + bolaV * ((1 - bolaV) * y1 + bolaV * y2)) + bolaV * ((1 - bolaV) * ((1 - bolaV) * y1 + bolaV * y2) + bolaV * ((1 - bolaV) * y2 + bolaV * y3));
+
+    if (bolaV >= 1) {
+        window.clearInterval(timerBola);
+        //Da reset a bola mas e instantaneo
+        bolaPosX = 610; // variaçao da bola em X
+        bolaPosY = 583; // variaçao da bola em Y
+        bolaV = 0;
+        ctx.closePath();
+    }
+}
+
+// Animacao do guarda-redes
+function animGuardaRedes(e) {
+    var frameIndex = 0;
+    var x = 500;
+    var y = 100;
+    //console.log(redes);
+
+    switch (redes) {
+        case 1:
+            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite1.png';
+            for (var i = 0; i < 3; i++) {
+                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+                frameIndex++;
+                console.log("olaaaaa");
+            }
+            break;
+        case 2:
+            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite2.png';
+            for (var i = 0; i < 3; i++) {
+                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+                frameIndex++;
+                console.log("olaaaaa");
+            }
+            break;
+        case 3:
+            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite3.png';
+            for (var i = 0; i < 3; i++) {
+                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+                frameIndex++;
+                console.log("olaaaaa");
+            }
+            break;
+        case 4:
+            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite4.png';
+            for (var i = 0; i < 3; i++) {
+                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+                frameIndex++;
+                console.log("olaaaaa");
+            }
+            break;
+        case 5:
+            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite5.png';
+            for (var i = 0; i < 3; i++) {
+                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+                frameIndex++;
+                console.log("olaaaaa");
+            }
+            break;
+        case 6:
+            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite6.png';
+            for (var i = 0; i < 3; i++) {
+                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+                frameIndex++;
+                console.log("olaaaaa");
+            }
+            break;
+        case 7:
+            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite7.png';
+            for (var i = 0; i < 3; i++) {
+                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+                frameIndex++;
+                console.log("olaaaaa");
+            }
+            break;
+        case 8:
+            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite8.png';
+            for (var i = 0; i < 3; i++) {
+                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+                frameIndex++;
+                console.log("olaaaaa");
+            }
+            break;
+        case 9:
+            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite9.png';
+            for (var i = 0; i < 3; i++) {
+                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+                frameIndex++;
+                console.log("olaaaaa");
+            }
+            break;
+        default:
+            console.log("A animacao do guarda-redes deu o berro (pra variar)...");
+    }
+}
+
+// Animacao da publicidade
+function animPublicidade() {
+    ctx.drawImage(imgPublicidade, canvasX, canvasY);
+    // Desenhar o bocado da imagem (1290 - x, 0) que esta fora do canvas no ponto (0,0)
+    if (canvasX > 0) {
+        ctx.drawImage(imgPublicidade, 1280 - canvasX, 0, canvasX, 720, 0, 0, canvasX, 720);
+    }
+    canvasX++;
+    //console.log(x)
+
+    //Quando o X chega ao fim da imagem volta a ser 0
+    if (canvasX == 1280) {
+        canvasX = 0;
+    }
+}
+
+// Animacao da Plateia
+function animPlateia() {
+    ctx.drawImage(imgPlateia, 0, plateiaY);
+    plateiaY -= plateiaV;
+    if (plateiaY <= -10) {
+        plateiaV = -plateiaV
+    } else if (plateiaY >= 0) {
+        plateiaV = -plateiaV
+    }
+}
+
+// Animacao da plateia
+function comecarAnimacoes(redes) {
+    /*
+    Sim, esta uma funcao dentro de uma funcao. Mas isso é porque o timer (no fim da funcao comecarAnimacoes()) age de forma diferente se tiver dentro da funcao
+    ou fora da funcao. Se estiver dentro fica mais lento, mas mesmo assim a 60fps, se estiver fora fica a 60 fps mas mais rapido...
+    */
+
+    function animacoes(redes) {
+        // Apaga o canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        animPlateia(); // Animacao da Plateia
+        animPublicidade(); // Animacao da Publicidade
+
+        ctx.drawImage(imgBaliza, 0, 0); // Desenhar a baliza
+        ctx.drawImage(imgBola, bolaPosX, bolaPosY); // Desenhar a bola
+
+        if (redes == undefined) {
+            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite1.png';
+            ctx.drawImage(imgGuardaRedes, 0, 0, 288, 288, 500, 100, 288, 288);
+        } else {
+            animGuardaRedes(redes); // Animacao do guarda-redes
+        }
+    }
+
+    // Chamar a função para as animacoes
+    var timer = window.setInterval(animacoes, 1000 / 60);
+}
+
+comecarAnimacoes();
