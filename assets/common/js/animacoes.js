@@ -1,94 +1,196 @@
-// Animacao da bola
-var v = 0;
-var posBolaX = 610; // variaçao da bola em X
-var posBolaY = 583; // variaçao da bola em Y
+// Variaveis Globais
+var animRedes = getGuardaRedes();
+var dificuldade = getDificuldade();
 
-var yPes = 0
-var yPes2 = 0
-var vPes = 0.8
-var vPes2 = 0.5
+// Image()
+var imgPublicidade = new Image()
+var imgBaliza = new Image()
+var imgGuardaRedes = new Image();
+var imgBola = new Image()
+var imgPlateia = new Image()
 
-var imagem = new Image() // Criar variavel imagem
-imagem.src = '../assets/common/img/placares.png'; // Atribuir imagem a variavel
-var baliza = new Image() // Criar variavel imagem
-baliza.src = '../assets/common/img/baliza.png'; // Atribuir imagem a variavel
-// Bola
-var bolita = new Image()
-bolita.src = '../assets/common/img/bola.png';
-var pessoas = new Image()
-pessoas.src = '../assets/common/img/pessoas_completo.png';
+// Image() sources
+imgBaliza.src = '../assets/common/img/baliza.png';
+imgPublicidade.src = '../assets/common/img/placares.png';
+imgBola.src = '../assets/common/img/bola.png';
+imgPlateia.src = '../assets/common/img/pessoas_completo.png';
 
-// Desenho da Bola
-function desenharBola(ponto1, ponto2, ponto3, ponto4, ponto5, ponto6, ponto7, ponto8) {
-    var x0 = ponto1;   // pontos da curva
-    var y0 = ponto2;
-    var x1 = ponto3;
-    var y1 = ponto4;
-    var x2 = ponto5;
-    var y2 = ponto6;
-    var x3 = ponto7;
-    var y3 = ponto8;
+// Variaveis do canvas
+var canvasX = 0;
+var canvasY = 0;
+
+// Variaveis para a bola
+var bolaV = 0;
+var bolaPosX = 610; // variaçao da bola em X
+var bolaPosY = 583; // variaçao da bola em Y
+
+// Variaveis para a plateia
+var plateiaY = 0
+var plateiaY2 = 0
+var plateiaV = 0.8
+var plateiaV2 = 0.5
+
+// Aniamcao da Bola
+function animBola(curvaPonto1, curvaPonto2, curvaPonto3, curvaPonto4, curvaPonto5, curvaPonto6, curvaPonto7, curvaPonto8) {
+    // Pontos da curva
+    var x0 = curvaPonto1;
+    var y0 = curvaPonto2;
+    var x1 = curvaPonto3;
+    var y1 = curvaPonto4;
+    var x2 = curvaPonto5;
+    var y2 = curvaPonto6;
+    var x3 = curvaPonto7;
+    var y3 = curvaPonto8;
 
     ctx.beginPath();
-    ctx.drawImage(bolita, posBolaX, posBolaY)
+    ctx.drawImage(imgBola, bolaPosX, bolaPosY)
 
-    v += 0.01
-    //console.log("V: " + v);
-    posBolaX = ((1 - v) * ((1 - v) * ((1 - v) * x0 + v * x1) + v * ((1 - v) * x1 + v * x2)) + v * ((1 - v) * ((1 - v) * x1 + v * x2) + v * ((1 - v) * x2 + v * x3)));
-    posBolaY = (1 - v) * ((1 - v) * ((1 - v) * y0 + v * y1) + v * ((1 - v) * y1 + v * y2)) + v * ((1 - v) * ((1 - v) * y1 + v * y2) + v * ((1 - v) * y2 + v * y3));
+    bolaV += 0.01
+    //console.log("V: " + bolaV);
 
-    if (v >= 1) {
-        window.clearInterval(timerBola)
+    bolaPosX = ((1 - bolaV) * ((1 - bolaV) * ((1 - bolaV) * x0 + bolaV * x1) + bolaV * ((1 - bolaV) * x1 + bolaV * x2)) + bolaV * ((1 - bolaV) * ((1 - bolaV) * x1 + bolaV * x2) + bolaV * ((1 - bolaV) * x2 + bolaV * x3)));
+    bolaPosY = (1 - bolaV) * ((1 - bolaV) * ((1 - bolaV) * y0 + bolaV * y1) + bolaV * ((1 - bolaV) * y1 + bolaV * y2)) + bolaV * ((1 - bolaV) * ((1 - bolaV) * y1 + bolaV * y2) + bolaV * ((1 - bolaV) * y2 + bolaV * y3));
+
+    if (bolaV >= 1) {
+        window.clearInterval(timerBola);
         //Da reset a bola mas e instantaneo
-        posBolaX = 610; // variaçao da bola em X
-        posBolaY = 583; // variaçao da bola em Y
-        v = 0;
+        bolaPosX = 610; // variaçao da bola em X
+        bolaPosY = 583; // variaçao da bola em Y
+        bolaV = 0;
+        ctx.closePath();
     }
 }
 
-
-
 // Animacao do guarda-redes
-function animRedes() {
-    // TODO
+function animGuardaRedes(e) {
+    var frameIndex = 0;
+    var x = 500;
+    var y = 100;
+
+    switch (redes) {
+        case 1:
+            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite1.png';
+            for (var i = 0; i < 3; i++) {
+                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+                frameIndex++;
+            }
+            break;
+        case 2:
+            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite2.png';
+            for (var i = 0; i < 3; i++) {
+                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+                frameIndex++;
+            }
+            break;
+        case 3:
+            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite3.png';
+            for (var i = 0; i < 3; i++) {
+                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+                frameIndex++;
+            }
+            break;
+        case 4:
+            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite4.png';
+            for (var i = 0; i < 3; i++) {
+                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+                frameIndex++;
+            }
+            break;
+        case 5:
+            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite5.png';
+            for (var i = 0; i < 3; i++) {
+                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+                frameIndex++;
+            }
+            break;
+        case 6:
+            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite6.png';
+            for (var i = 0; i < 3; i++) {
+                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+                frameIndex++;
+            }
+            break;
+        case 7:
+            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite7.png';
+            for (var i = 0; i < 3; i++) {
+                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+                frameIndex++;
+            }
+            break;
+        case 8:
+            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite8.png';
+            for (var i = 0; i < 3; i++) {
+                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+                frameIndex++;
+            }
+            break;
+        case 9:
+            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite9.png';
+            for (var i = 0; i < 3; i++) {
+                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+                frameIndex++;
+            }
+            break;
+        default:
+            Console.log("A animacao do guarda-redes deu o berro (pra variar)...");
+    }
 }
 
 // Animacao da publicidade
 function animPublicidade() {
-    // Canto superior esquerdo - onde vamos desenhar a imagem
-    var x = 0;
-    var y = 0;
-
-    // Animação da publicidade
-    function publicidade() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height) // Apaga o canvas
-
-        ctx.drawImage(pessoas, 0, yPes)
-        ctx.drawImage(imagem, x, y) //desenha a imagem
-
-        if (x > 0) {                                                    // Se o x for maior que 0
-            ctx.drawImage(imagem, 1280 - x, 0, x, 720, 0, 0, x, 720)    // Desenhar o bocado da imagem (1290 - x, 0) Que esta fora do canvas No ponto (0,0)
-        }
-        x++;
-        //console.log(x)
-        if (x == 1280) {  //Quando o X chega ao fim da imagem
-            x = 0       //volta a ser 0
-        }
-
-        ctx.drawImage(baliza, 0, 0) //desenha a imagem
-        ctx.drawImage(bolita, posBolaX, posBolaY)
-
-        yPes -= vPes
-        if (yPes <= -10) {
-            vPes = -vPes
-        } else if (yPes >= 0) {
-            vPes = -vPes
-        }
+    ctx.drawImage(imgPublicidade, canvasX, canvasY);
+    // Desenhar o bocado da imagem (1290 - x, 0) que esta fora do canvas no ponto (0,0)
+    if (canvasX > 0) {
+        ctx.drawImage(imgPublicidade, 1280 - canvasX, 0, canvasX, 720, 0, 0, canvasX, 720);
     }
-    // Chamar a função da publicidade
-    var timer = window.setInterval(publicidade, 1000 / 60)
+    canvasX++;
+    //console.log(x)
+
+    //Quando o X chega ao fim da imagem volta a ser 0
+    if (canvasX == 1280) {
+        canvasX = 0;
+    }
 }
 
-//animBola();
-//animRedes();
-animPublicidade();
+// Animacao da Plateia
+function animPlateia() {
+    ctx.drawImage(imgPlateia, 0, plateiaY);
+    plateiaY -= plateiaV;
+    if (plateiaY <= -10) {
+        plateiaV = -plateiaV
+    } else if (plateiaY >= 0) {
+        plateiaV = -plateiaV
+    }
+}
+
+// Animacao da plateia
+function comecarAnimacoes(redes) {
+    /*
+    Sim, esta uma funcao dentro de uma funcao. Mas isso é porque o timer (no fim da funcao comecarAnimacoes()) age de forma diferente se tiver dentro da funcao
+    ou fora da funcao. Se estiver dentro fica mais lento, mas mesmo assim a 60fps, se estiver fora fica a 60 fps mas mais rapido...
+    */
+
+    function animacoes(redes) {
+        // Apaga o canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        animPlateia(); // Animacao da Plateia
+        animPublicidade(); // Animacao da Publicidade
+
+        ctx.drawImage(imgBaliza, 0, 0); // Desenhar a baliza
+        ctx.drawImage(imgBola, bolaPosX, bolaPosY); // Desenhar a bola
+
+        if (animRedes == undefined) {
+            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite1.png';
+            ctx.drawImage(imgGuardaRedes, 0, 0, 288, 288, 500, 100, 288, 288);
+        } else {
+            animGuardaRedes(animRedes); // Animacao do guarda-redes
+        }
+    }
+
+    // Chamar a função para as animacoes
+    var timer = window.setInterval(animacoes, 1000 / 60);
+}
+
+//animPlateia();
+comecarAnimacoes();

@@ -2,7 +2,7 @@
 var cmp = false;
 var plt = false;
 var pub = false;
-var bola = false;
+var bolas = false;
 var bal = false;
 
 function areas(cmp, plt, pub, bola, bal) {

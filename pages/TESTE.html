@@ -10,8 +10,8 @@
         }
     </style>
 
-      <!-- CSS -->
-      <link rel="stylesheet" href="../assets/common/css/config.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/common/css/config.css">
 </head>
 
 <body>
@@ -21,85 +21,25 @@
     </canvas>
 
     <script>
-        // Comentario para o hugo: https://www.desmos.com/calculator/cahqdxeshd
-
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext("2d");
 
-        //ctx.translate(canvas.width / 2, 0)
+        var guardaRedes = new Image();
+        guardaRedes.src = '../assets/common/sprites/keeper/Sprite9.png';
 
-        var timer;
+        var max = 0;
+        var x = 500;
+        var y = 100;
+        var frameIndex = 0;
 
-        /* 
-            RETANGULO 1 - X: 364  Y: 87
-            RETANGULO 2 - X: 364  Y: 177
-            RETANGULO 3 - X: 364  Y: 267
-
-            RETANGULO 4 - X: 552  Y: 87
-            RETANGULO 5 - X: 552  Y: 177
-            RETANGULO 6 - X: 552  Y: 267
-
-            RETANGULO 7 - X: 740  Y: 87
-            RETANGULO 8 - X: 740  Y: 177
-            RETANGULO 9 - X: 740  Y: 267
-
-            LARGURA:188
-            ALTURA:90
-
-            BOLA: X:645 Y:615
-        */
-
-
-        var circulo = {
-
-            x0: 610,
-            y0: 583,
-
-            x1: 893,
-            y1: 470,
-
-            x2: 969,
-            y2: 340,
-
-            x3: 800,
-            y3: 290,
-        };// Bola: X:637 Y:609
-
-        var t = 0
-        //equação da curva de bezier
-        var posX;
-        var posY;
-
-        function calc(t) {
-            posX = ((1 - t) * ((1 - t) * ((1 - t) * circulo.x0 + t * circulo.x1) + t * ((1 - t) * circulo.x1 + t * circulo.x2)) + t * ((1 - t) * ((1 - t) * circulo.x1 + t * circulo.x2) + t * ((1 - t) * circulo.x2 + t * circulo.x3)));
-            posY = (1 - t) * ((1 - t) * ((1 - t) * circulo.y0 + t * circulo.y1) + t * ((1 - t) * circulo.y1 + t * circulo.y2)) + t * ((1 - t) * ((1 - t) * circulo.y1 + t * circulo.y2) + t * ((1 - t) * circulo.y2 + t * circulo.y3));
-
+        function animateguardaRedes() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.drawImage(guardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
+                frameIndex++;
+                x += -15;
+                console.log("olaaaaaa");
         }
 
-        
-        
-        var imagem = new Image() 
-        imagem.src = '../assets/common/img/bola.png';
-
-        
-        function desenhar() {
-
-           
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-
-            ctx.beginPath();
-         
-            ctx.drawImage(imagem, posX, posY)
-
-            t += 0.01
-            calc(t);
-            console.log(posX, posY)
-
-            if (t >= 1)
-                window.clearInterval(timer)
-        }
-
-        timer = window.setInterval(desenhar, 10)
+        guardaRedes.addEventListener('load', function () { window.setInterval(animateguardaRedes, 1500); });
     </script>
 </body>
