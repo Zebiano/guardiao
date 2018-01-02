@@ -1,5 +1,5 @@
 // Variaveis Globais
-var animRedes = getGuardaRedes();
+var redes = getGuardaRedes();
 var dificuldade = getDificuldade();
 
 // Image()
@@ -66,6 +66,7 @@ function animGuardaRedes(e) {
     var frameIndex = 0;
     var x = 500;
     var y = 100;
+    //console.log(redes);
 
     switch (redes) {
         case 1:
@@ -73,7 +74,7 @@ function animGuardaRedes(e) {
             for (var i = 0; i < 3; i++) {
                 ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
                 frameIndex++;
-                x += -70;  
+                console.log("olaaaaa");
             }
             break;
         case 2:
@@ -81,7 +82,7 @@ function animGuardaRedes(e) {
             for (var i = 0; i < 3; i++) {
                 ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
                 frameIndex++;
-                y += -20; 
+                console.log("olaaaaa");
             }
             break;
         case 3:
@@ -89,7 +90,7 @@ function animGuardaRedes(e) {
             for (var i = 0; i < 3; i++) {
                 ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
                 frameIndex++;
-                x += 60;  
+                console.log("olaaaaa");
             }
             break;
         case 4:
@@ -97,8 +98,7 @@ function animGuardaRedes(e) {
             for (var i = 0; i < 3; i++) {
                 ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
                 frameIndex++;
-                x += -140;  
-                
+                console.log("olaaaaa");
             }
             break;
         case 5:
@@ -106,6 +106,7 @@ function animGuardaRedes(e) {
             for (var i = 0; i < 3; i++) {
                 ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
                 frameIndex++;
+                console.log("olaaaaa");
             }
             break;
         case 6:
@@ -113,7 +114,7 @@ function animGuardaRedes(e) {
             for (var i = 0; i < 3; i++) {
                 ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
                 frameIndex++;
-                x += 100;
+                console.log("olaaaaa");
             }
             break;
         case 7:
@@ -121,7 +122,7 @@ function animGuardaRedes(e) {
             for (var i = 0; i < 3; i++) {
                 ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
                 frameIndex++;
-                x += -70;
+                console.log("olaaaaa");
             }
             break;
         case 8:
@@ -129,7 +130,7 @@ function animGuardaRedes(e) {
             for (var i = 0; i < 3; i++) {
                 ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
                 frameIndex++;
-                x += -15; 
+                console.log("olaaaaa");
             }
             break;
         case 9:
@@ -137,11 +138,11 @@ function animGuardaRedes(e) {
             for (var i = 0; i < 3; i++) {
                 ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
                 frameIndex++;
-                x += 60;  
+                console.log("olaaaaa");
             }
             break;
         default:
-            Console.log("A animacao do guarda-redes deu o berro (pra variar)...");
+            console.log("A animacao do guarda-redes deu o berro (pra variar)...");
     }
 }
 
@@ -172,33 +173,33 @@ function animPlateia() {
     }
 }
 
-function marcador(golos){
-
+function marcador(golos) {
     ctx.beginPath();
     ctx.fillStyle = 'rgb(30, 40, 188)'
-    ctx.rect(1160,500, 100,60);
+    ctx.rect(1160, 500, 100, 60);
     ctx.fill()
 
     ctx.beginPath();
     ctx.fillStyle = 'white'
-    ctx.rect(1160,560, 100,110);
+    ctx.rect(1160, 560, 100, 110);
     ctx.fill()
-    
+
     ctx.beginPath();
     ctx.lineWidth = 7
-    ctx.rect(1160,500, 100,170);
+    ctx.rect(1160, 500, 100, 170);
     ctx.stroke();
 
     ctx.font = 'bold 40px Verdana';
-    ctx.fillText("GOLOS", 1167, 545,86);
+    ctx.fillText("GOLOS", 1167, 545, 86);
 
     ctx.font = 'bold 100px Verdana';
     ctx.fillStyle = 'black'
-    ctx.fillText(golos, 1175, 650,86);
+    ctx.fillText(golos, 1175, 650, 86);
 
-    console.log("ola")
+    //console.log("ola")
 }
-// Animacao da plateia
+
+// Começar as animaçoes
 function comecarAnimacoes(redes) {
     /*
     Sim, esta uma funcao dentro de uma funcao. Mas isso é porque o timer (no fim da funcao comecarAnimacoes()) age de forma diferente se tiver dentro da funcao
@@ -211,16 +212,16 @@ function comecarAnimacoes(redes) {
 
         animPlateia(); // Animacao da Plateia
         animPublicidade(); // Animacao da Publicidade
-        
+
 
         ctx.drawImage(imgBaliza, 0, 0); // Desenhar a baliza
         ctx.drawImage(imgBola, bolaPosX, bolaPosY); // Desenhar a bola
 
-        if (animRedes == undefined) {
+        if (redes == undefined) {
             imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite1.png';
             ctx.drawImage(imgGuardaRedes, 0, 0, 288, 288, 500, 100, 288, 288);
         } else {
-            animGuardaRedes(animRedes); // Animacao do guarda-redes
+            animGuardaRedes(redes); // Animacao do guarda-redes
         }
 
         marcador(golos);
