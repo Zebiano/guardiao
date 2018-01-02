@@ -21,6 +21,8 @@ function Quadrado(x, y, w, h) {
     this.selected = false;
 }
 
+var golos = 0;
+
 // Adiciona os quadrados ao array. Se for para mudar as coordenadas, muda-se aqui
 function criarQuadrado() {
     arrayQuadrados.push(new Quadrado(357, 81, 189, 97));
@@ -152,8 +154,10 @@ function click(e) {
                 resultado();
             } else {
                 defesa = false;
+                golos++;
                 resultado();
             }
+            
         }
     }
 
@@ -189,6 +193,7 @@ function click(e) {
         default:
             console.log("Erro na animacao da bola.")
     }
+ 
 }
 
 // Define se o utilizador marcou ou nao
