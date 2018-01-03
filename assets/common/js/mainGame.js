@@ -210,9 +210,9 @@ function click(e) {
 // Define se o utilizador marcou ou nao e se o jogo acabou
 function resultado() {
     if (defesa == true) {
-        alert("Missed...");
+        alert("Falhaste...!");
     } else if (defesa == false) {
-        alert("Goal!");
+        alert("GOLOO!");
     }
 
     // Sons
@@ -222,13 +222,13 @@ function resultado() {
     // Quando acabarem as tentativas perguntar se o jogador quer jogar novamente
     if (tentativas == 0) {
         if (golos >= 3) {
-            result = "won";
+            result = "Ganhaste!";
         } else {
-            result = "lost";
+            result = "Perdeste...";
         }
 
         // Pergunta ao jogador se quer jogar novamente ou nao e indica se ganhou ou nao
-        input = confirm("Game over. You " + result + "! Wanna play again?");
+        input = confirm(result + " Acabou o jogo. Queres jogar novamente?");
         if (input == true) {
             location.reload();
         } else {
