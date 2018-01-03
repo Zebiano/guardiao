@@ -1,5 +1,4 @@
 // Variaveis Globais
-//var redes = getGuardaRedes();
 var dificuldade = getDificuldade();
 
 // Image()
@@ -26,9 +25,13 @@ var bolaPosY = 583; // variaçao da bola em Y
 
 // Variaveis para a plateia
 var plateiaY = 0
-var plateiaY2 = 0
 var plateiaV = 0.8
-var plateiaV2 = 0.5
+
+// Variaveis para o guarda-redes
+var GRskipFrames = 0;
+var GRframeIndex = -1;
+var GRx = 500;
+var GRy = 100;
 
 // Aniamcao da Bola
 function animBola(curvaPonto1, curvaPonto2, curvaPonto3, curvaPonto4, curvaPonto5, curvaPonto6, curvaPonto7, curvaPonto8) {
@@ -63,95 +66,29 @@ function animBola(curvaPonto1, curvaPonto2, curvaPonto3, curvaPonto4, curvaPonto
 
 // Animacao do guarda-redes
 function animGuardaRedes(e) {
-    var frameIndex = -1;
-    var x = 500;
-    var y = 100;
-    //console.log("ah pois " + redes);
+    // Source
+    imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite' + e + '.png';
 
-    switch (redes) {
-        case 1:
-            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite1.png';
-            for (var i = 0; i < 3; i++) {
-                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
-                frameIndex++;
-                console.log(frameIndex);
-                sleep(2000);
-            }
-            break;
-        case 2:
-            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite2.png';
-            for (var i = 0; i < 3; i++) {
-                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
-                frameIndex++;
-                console.log(frameIndex);
-                sleep(2000);
-            }
-            break;
-        case 3:
-            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite3.png';
-            for (var i = 0; i < 3; i++) {
-                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
-                frameIndex++;
-                console.log(frameIndex);
-                sleep(2000);
-            }
-            break;
-        case 4:
-            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite4.png';
-            for (var i = 0; i < 3; i++) {
-                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
-                frameIndex++;
-                console.log(frameIndex);
-                sleep(2000);
-            }
-            break;
-        case 5:
-            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite5.png';
-            for (var i = 0; i < 3; i++) {
-                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
-                frameIndex++;
-                console.log(frameIndex);
-                sleep(2000);
-            }
-            break;
-        case 6:
-            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite6.png';
-            for (var i = 0; i < 3; i++) {
-                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
-                frameIndex++;
-                console.log(frameIndex);
-                sleep(2000);
-            }
-            break;
-        case 7:
-            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite7.png';
-            for (var i = 0; i < 3; i++) {
-                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
-                frameIndex++;
-                console.log(frameIndex);
-                sleep(2000);
-            }
-            break;
-        case 8:
-            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite8.png';
-            for (var i = 0; i < 3; i++) {
-                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
-                frameIndex++;
-                console.log(frameIndex);
-                sleep(2000);
-            }
-            break;
-        case 9:
-            imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite9.png';
-            for (var i = 0; i < 3; i++) {
-                ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
-                frameIndex++;
-                console.log(frameIndex);
-                sleep(2000);
-            }
-            break;
-        default:
-            console.log("A animacao do guarda-redes deu o berro (pra variar)...");
+    // Dependendo da escolha do redes, ou sao duas ou tres frames
+    if (e == 1 || e == 3 || e == 7 || e == 9) {
+        ctx.drawImage(imgGuardaRedes, GRframeIndex * 288, 0, 288, 288, GRx, GRy, 288, 288);
+        if (GRskipFrames == 0) {
+            GRframeIndex++;
+        } else if (GRskipFrames == 25) {
+            GRframeIndex++;
+        } else if (GRskipFrames == 50) {
+            GRframeIndex++;
+        }
+        GRskipFrames++;
+    } else {
+        ctx.drawImage(imgGuardaRedes, GRframeIndex * 288, 0, 288, 288, GRx, GRy, 288, 288);
+        if (GRskipFrames == 0) {
+            GRframeIndex++;
+        } else if (GRskipFrames == 25) {
+            GRframeIndex++;
+            console.log("bla1");
+        }
+        GRskipFrames++;
     }
 }
 
@@ -182,19 +119,20 @@ function animPlateia() {
     }
 }
 
+// Acrescenta a quantidade de golos
 function marcador(golos) {
     ctx.beginPath();
-    ctx.fillStyle = 'rgb(30, 40, 188)'
+    ctx.fillStyle = 'rgb(30, 40, 188)';
     ctx.rect(1160, 500, 100, 60);
-    ctx.fill()
+    ctx.fill();
 
     ctx.beginPath();
-    ctx.fillStyle = 'white'
+    ctx.fillStyle = 'white';
     ctx.rect(1160, 560, 100, 110);
-    ctx.fill()
+    ctx.fill();
 
     ctx.beginPath();
-    ctx.lineWidth = 7
+    ctx.lineWidth = 7;
     ctx.rect(1160, 500, 100, 170);
     ctx.stroke();
 
@@ -202,52 +140,43 @@ function marcador(golos) {
     ctx.fillText("GOLOS", 1167, 545, 86);
 
     ctx.font = 'bold 100px Verdana';
-    ctx.fillStyle = 'black'
+    ctx.fillStyle = 'black';
     ctx.fillText(golos, 1175, 650, 86);
 
-    //console.log("ola")
+    //console.log("ola");
 }
 
 // Começar as animaçoes
-function comecarAnimacoes(redes) {
+function comecarAnimacoes() {
     /*
     Sim, esta uma funcao dentro de uma funcao. Mas isso é porque o timer (no fim da funcao comecarAnimacoes()) age de forma diferente se tiver dentro da funcao
     ou fora da funcao. Se estiver dentro fica mais lento, mas mesmo assim a 60fps, se estiver fora fica a 60 fps mas mais rapido...
     */
 
-    function animacoes(redes) {
+    function animacoes() {
         // Apaga o canvas
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         animPlateia(); // Animacao da Plateia
         animPublicidade(); // Animacao da Publicidade
 
-
         ctx.drawImage(imgBaliza, 0, 0); // Desenhar a baliza
         ctx.drawImage(imgBola, bolaPosX, bolaPosY); // Desenhar a bola
+
+        redes = getGuardaRedes();
 
         if (redes == undefined) {
             imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite1.png';
             ctx.drawImage(imgGuardaRedes, 0, 0, 288, 288, 500, 100, 288, 288);
         } else {
-            animGuardaRedes(redes); // Animacao do guarda-redes
+            animGuardaRedes(redes);
         }
 
-        marcador(golos);
+        marcador(golos); // Acrescenta a quantidade de golos
     }
 
     // Chamar a função para as animacoes
     var timer = window.setInterval(animacoes, 1000 / 60);
 }
 
-function sleep(milliseconds) {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-        if ((new Date().getTime() - start) > milliseconds) {
-            break;
-        }
-    }
-}
-
-//animPlateia();
 comecarAnimacoes();

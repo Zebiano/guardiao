@@ -178,6 +178,8 @@ function click(e) {
 
             // O guarda redes escolhe um quadrado consoante a escolha do jogador
             guardaRedes(escolha);
+            //console.log(redes);
+            setGuardaRedes(redes);
 
             if (escolha == redes) {
                 defesa = true;
@@ -187,7 +189,6 @@ function click(e) {
                 golos++;
                 resultado();
             }
-
         }
     }
 
@@ -195,46 +196,49 @@ function click(e) {
     switch (escolha) {
         case 1:
             timerBola = window.setInterval(function () { animBola(610, 583, 368, 450, 280, 186, 429, 110) }, 10);
-            animGuardaRedes(redes);
+            //timerGuardaRedes = window.setInterval(function () { animGuardaRedes(redes) }, 10);
             break;
         case 2:
             timerBola = window.setInterval(function () { animBola(610, 583, 485, 444, 390, 216, 625, 110) }, 10);
-            animGuardaRedes(redes);
+            //timerGuardaRedes = window.setInterval(function () { animGuardaRedes(redes) }, 10);
             break;
         case 3:
             timerBola = window.setInterval(function () { animBola(610, 583, 843, 520, 975, 113, 800, 110) }, 10);
-            animGuardaRedes(redes);
+            //timerGuardaRedes = window.setInterval(function () { animGuardaRedes(redes) }, 10);
             break;
         case 4:
             timerBola = window.setInterval(function () { animBola(610, 583, 474, 520, 355, 340, 429, 195) }, 10);
-            animGuardaRedes(redes);
+            //timerGuardaRedes = window.setInterval(function () { animGuardaRedes(redes) }, 10);
             break;
         case 5:
             timerBola = window.setInterval(function () { animBola(610, 583, 841, 410, 466, 331, 625, 195) }, 10);
-            animGuardaRedes(redes);
+            //timerGuardaRedes = window.setInterval(function () { animGuardaRedes(redes) }, 10);
             break;
         case 6:
             timerBola = window.setInterval(function () { animBola(610, 583, 830, 547, 954, 306, 800, 195) }, 10);
-            animGuardaRedes(redes);
+            //timerGuardaRedes = window.setInterval(function () { animGuardaRedes(redes) }, 10);
             break;
         case 7:
             timerBola = window.setInterval(function () { animBola(610, 583, 479, 564, 456, 259, 429, 290) }, 10);
-            animGuardaRedes(redes);
+            //timerGuardaRedes = window.setInterval(function () { animGuardaRedes(redes) }, 10);
             break;
         case 8:
             timerBola = window.setInterval(function () { animBola(610, 583, 700, 476, 690, 352, 625, 290) }, 10);
-            animGuardaRedes(redes);
+            //timerGuardaRedes = window.setInterval(function () { animGuardaRedes(redes) }, 10);
             break;
         case 9:
             timerBola = window.setInterval(function () { animBola(610, 583, 893, 470, 969, 340, 800, 290) }, 10);
-            animGuardaRedes(redes);
+            //timerGuardaRedes = window.setInterval(function () { animGuardaRedes(redes) }, 10);
             break;
         default:
             console.log("Erro na animacao da bola.")
     }
-
+    
     // Da reset as variaveis
-    resetVariaveis();
+    if (GRskipFrames == 300) {
+        resetVariaveis();
+    }
+    //resetVariaveis();
 }
 
 // Define se o utilizador marcou ou nao
