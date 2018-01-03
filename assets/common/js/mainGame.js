@@ -1,10 +1,11 @@
 // Variaveis Globais
-var escolha = 0; // Indica o quadrado selecionado pelo utilizador
-var redes = 0; // Indica o quadrado selecionado pelo guarda-redes
+var escolha; // Indica o quadrado selecionado pelo utilizador
+var redes; // Indica o quadrado selecionado pelo guarda-redes
 var defesa; // Define se o guarda-redes conseguiu defender ou nao
 var golos = 0; // Define a quantidade de golos que o jogador marca
 var tentativas = 5; // Define a quantidade de tentativas restantes
 var input; // Define se o jogador quer jogar novamente
+var result; // Define se o jogador ganhou ou nao
 var dificuldade = getDificuldade();
 console.log("Dificuldade: " + dificuldade);
 
@@ -238,7 +239,13 @@ function resultado() {
 
     // Quando acabarem as tentativas perguntar se o jogador quer jogar novamente
     if (tentativas == 0) {
-        input = confirm("Game over. Wanna play again?");
+        if (golos >= 3) {
+            result = "won";
+        } else {
+            result = "lost";
+        }
+
+        input = confirm("Game over. You " + result + "! Wanna play again?");
 
         if (input == true) {
             location.reload();

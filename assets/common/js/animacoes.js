@@ -75,9 +75,8 @@ function animGuardaRedes(e) {
         } else if (GRskipFrames == 50) {
             GRframeIndex++;
         } else if (GRskipFrames == 70) {
-            // Alert box a abrir os resultados
-            resultado();
-            resetVariaveis();
+            resultado(); // Alert box a abrir os resultados
+            resetVariaveis(); // Reset as variaveis
         }
         GRskipFrames++;
     } else if (e == 2 || e == 4 || e == 6 || e == 8) { // 2 frames
@@ -87,9 +86,8 @@ function animGuardaRedes(e) {
         } else if (GRskipFrames == 25) {
             GRframeIndex++;
         } else if (GRskipFrames == 70) {
-            // Alert box a abrir os resultados
-            resultado();
-            resetVariaveis();
+            resultado(); // Alert box a abrir os resultados
+            resetVariaveis(); // Reset as variaveis
         }
         GRskipFrames++;
     } else { // 1 frame
@@ -97,9 +95,8 @@ function animGuardaRedes(e) {
         if (GRskipFrames == 0) {
             GRframeIndex++;
         } else if (GRskipFrames == 70) {
-            // Alert box a abrir os resultados
-            resultado();
-            resetVariaveis();
+            resultado(); // Alert box a abrir os resultados
+            resetVariaveis(); // Reset as variaveis
         }
         GRskipFrames++;
     }
