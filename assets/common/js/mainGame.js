@@ -46,7 +46,6 @@ function guardaRedes(e) {
     } else {
         console.log("Erro na dificuldade. Ou então o browser do utilizador nao suporta localStorage.")
     }
-    setGuardaRedes(redes);
     console.log("Redes: " + redes);
     //console.log("GetRedes: " + getGuardaRedes());
 }

@@ -1,6 +1,5 @@
 // Variaveis Globais
 var dificuldade;
-var guardaRedes1;
 
 // Define a dificuldade
 function setDificuldade(e) {
@@ -26,12 +25,4 @@ function setDificuldade(e) {
 // Obtem a dificuldade
 function getDificuldade() {
     return localStorage.getItem("lastname");
-}
-
-function setGuardaRedes(e) {
-    guardaRedes1 = e;
-}
-
-function getGuardaRedes() {
-    return guardaRedes1;
 }

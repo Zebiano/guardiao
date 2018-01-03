@@ -1,5 +1,5 @@
 // Variaveis Globais
-var redes = getGuardaRedes();
+//var redes = getGuardaRedes();
 var dificuldade = getDificuldade();
 
 // Image()
@@ -63,10 +63,10 @@ function animBola(curvaPonto1, curvaPonto2, curvaPonto3, curvaPonto4, curvaPonto
 
 // Animacao do guarda-redes
 function animGuardaRedes(e) {
-    var frameIndex = 0;
+    var frameIndex = -1;
     var x = 500;
     var y = 100;
-    //console.log(redes);
+    //console.log("ah pois " + redes);
 
     switch (redes) {
         case 1:
@@ -74,7 +74,8 @@ function animGuardaRedes(e) {
             for (var i = 0; i < 3; i++) {
                 ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
                 frameIndex++;
-                console.log("olaaaaa");
+                console.log(frameIndex);
+                sleep(2000);
             }
             break;
         case 2:
@@ -82,7 +83,8 @@ function animGuardaRedes(e) {
             for (var i = 0; i < 3; i++) {
                 ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
                 frameIndex++;
-                console.log("olaaaaa");
+                console.log(frameIndex);
+                sleep(2000);
             }
             break;
         case 3:
@@ -90,7 +92,8 @@ function animGuardaRedes(e) {
             for (var i = 0; i < 3; i++) {
                 ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
                 frameIndex++;
-                console.log("olaaaaa");
+                console.log(frameIndex);
+                sleep(2000);
             }
             break;
         case 4:
@@ -98,7 +101,8 @@ function animGuardaRedes(e) {
             for (var i = 0; i < 3; i++) {
                 ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
                 frameIndex++;
-                console.log("olaaaaa");
+                console.log(frameIndex);
+                sleep(2000);
             }
             break;
         case 5:
@@ -106,7 +110,8 @@ function animGuardaRedes(e) {
             for (var i = 0; i < 3; i++) {
                 ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
                 frameIndex++;
-                console.log("olaaaaa");
+                console.log(frameIndex);
+                sleep(2000);
             }
             break;
         case 6:
@@ -114,7 +119,8 @@ function animGuardaRedes(e) {
             for (var i = 0; i < 3; i++) {
                 ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
                 frameIndex++;
-                console.log("olaaaaa");
+                console.log(frameIndex);
+                sleep(2000);
             }
             break;
         case 7:
@@ -122,7 +128,8 @@ function animGuardaRedes(e) {
             for (var i = 0; i < 3; i++) {
                 ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
                 frameIndex++;
-                console.log("olaaaaa");
+                console.log(frameIndex);
+                sleep(2000);
             }
             break;
         case 8:
@@ -130,7 +137,8 @@ function animGuardaRedes(e) {
             for (var i = 0; i < 3; i++) {
                 ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
                 frameIndex++;
-                console.log("olaaaaa");
+                console.log(frameIndex);
+                sleep(2000);
             }
             break;
         case 9:
@@ -138,7 +146,8 @@ function animGuardaRedes(e) {
             for (var i = 0; i < 3; i++) {
                 ctx.drawImage(imgGuardaRedes, frameIndex * 288, 0, 288, 288, x, y, 288, 288);
                 frameIndex++;
-                console.log("olaaaaa");
+                console.log(frameIndex);
+                sleep(2000);
             }
             break;
         default:
@@ -229,6 +238,15 @@ function comecarAnimacoes(redes) {
 
     // Chamar a função para as animacoes
     var timer = window.setInterval(animacoes, 1000 / 60);
+}
+
+function sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+        if ((new Date().getTime() - start) > milliseconds) {
+            break;
+        }
+    }
 }
 
 //animPlateia();
