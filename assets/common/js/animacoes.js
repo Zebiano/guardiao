@@ -80,13 +80,18 @@ function animGuardaRedes(e) {
             GRframeIndex++;
         }
         GRskipFrames++;
+    } else if (e == 5) {
+        ctx.drawImage(imgGuardaRedes, GRframeIndex * 288, 0, 288, 288, GRx, GRy, 288, 288);
+        if (GRskipFrames == 0) {
+            GRframeIndex++;
+        }
+        GRskipFrames++;
     } else {
         ctx.drawImage(imgGuardaRedes, GRframeIndex * 288, 0, 288, 288, GRx, GRy, 288, 288);
         if (GRskipFrames == 0) {
             GRframeIndex++;
         } else if (GRskipFrames == 25) {
             GRframeIndex++;
-            console.log("bla1");
         }
         GRskipFrames++;
     }
