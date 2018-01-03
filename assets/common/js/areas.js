@@ -6,6 +6,11 @@ var bolas = false;
 var bal = false;
 
 function areas(cmp, plt, pub, bola, bal) {
+    /*
+        Para poder usar esta funcao pela consola tem que se desativar primeiro as animacoes.
+        Em "animacoes.js" ha uma variavel "timer" dentro da funcao "comecarAnimacoes()". Comenta-se essa linha e ja se pode ter acesso a funcao neste ficheiro.
+    */
+
     // Areas de clique
     ctx.beginPath();
 

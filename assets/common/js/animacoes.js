@@ -1,6 +1,7 @@
 // Variaveis Globais
 var dificuldade = getDificuldade(); // Obtem a dificuldade
 redes = getGuardaRedes(); // Define a variavel do redes
+var timer; // Timer das animacoes
 
 // Image()
 var imgBaliza = new Image()
@@ -219,7 +220,7 @@ function marcadorTentativas(tentativas) {
 
 
 // Começar as animaçoes
-function comecarAnimacoes() {
+function comecarAnimacoes(e) {
     /*
     Sim, esta uma funcao dentro de uma funcao. Mas isso é porque o timer (no fim da funcao comecarAnimacoes()) age de forma diferente se tiver dentro da funcao
     ou fora da funcao. Se estiver dentro fica mais lento, mas mesmo assim a 60fps, se estiver fora fica a 60 fps mas mais rapido...
@@ -249,8 +250,8 @@ function comecarAnimacoes() {
         marcadorTentativas(tentativas);
     }
 
-    // Chamar a função para as animacoes
-    var timer = window.setInterval(animacoes, 1000 / 60);
+    // Chamar a função para as animacoes (comentar a linha abaixo para parar as animacoes)
+    timer = window.setInterval(animacoes, 1000 / 60);
 }
 
 comecarAnimacoes();

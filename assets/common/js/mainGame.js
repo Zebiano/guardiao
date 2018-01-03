@@ -163,43 +163,44 @@ function click(e) {
             if (escolha == redes) {
                 defesa = true;
                 tentativas--;
+                arraySons[2].play(); // Som - Sad
             } else {
                 defesa = false;
                 golos++;
                 tentativas--;
+                arraySons[1].play(); // Som - Golo
             }
         }
     }
 
     // Atribuir movimento da bola a cada escolha
-    //console.log("olaaaaaaa 2");
     switch (escolha) {
         case 1:
-            timerBola = window.setInterval(function () { animBola(610, 583, 368, 450, 280, 186, 429, 110) }, 1000/60);
+            timerBola = window.setInterval(function () { animBola(610, 583, 368, 450, 280, 186, 429, 110) }, 1000 / 60);
             break;
         case 2:
-            timerBola = window.setInterval(function () { animBola(610, 583, 485, 444, 390, 216, 625, 110) }, 1000/60);
+            timerBola = window.setInterval(function () { animBola(610, 583, 485, 444, 390, 216, 625, 110) }, 1000 / 60);
             break;
         case 3:
-            timerBola = window.setInterval(function () { animBola(610, 583, 843, 520, 975, 113, 800, 110) }, 1000/60);
+            timerBola = window.setInterval(function () { animBola(610, 583, 843, 520, 975, 113, 800, 110) }, 1000 / 60);
             break;
         case 4:
-            timerBola = window.setInterval(function () { animBola(610, 583, 474, 520, 355, 340, 429, 195) }, 1000/60);
+            timerBola = window.setInterval(function () { animBola(610, 583, 474, 520, 355, 340, 429, 195) }, 1000 / 60);
             break;
         case 5:
-            timerBola = window.setInterval(function () { animBola(610, 583, 841, 410, 466, 331, 625, 195) }, 1000/60);
+            timerBola = window.setInterval(function () { animBola(610, 583, 841, 410, 466, 331, 625, 195) }, 1000 / 60);
             break;
         case 6:
-            timerBola = window.setInterval(function () { animBola(610, 583, 830, 547, 954, 306, 800, 195) }, 1000/60);
+            timerBola = window.setInterval(function () { animBola(610, 583, 830, 547, 954, 306, 800, 195) }, 1000 / 60);
             break;
         case 7:
-            timerBola = window.setInterval(function () { animBola(610, 583, 479, 564, 456, 259, 429, 290) }, 1000/60);
+            timerBola = window.setInterval(function () { animBola(610, 583, 479, 564, 456, 259, 429, 290) }, 1000 / 60);
             break;
         case 8:
-            timerBola = window.setInterval(function () { animBola(610, 583, 700, 476, 690, 352, 625, 290) }, 1000/60);
+            timerBola = window.setInterval(function () { animBola(610, 583, 700, 476, 690, 352, 625, 290) }, 1000 / 60);
             break;
         case 9:
-            timerBola = window.setInterval(function () { animBola(610, 583, 893, 470, 969, 340, 800, 290) }, 1000/60);
+            timerBola = window.setInterval(function () { animBola(610, 583, 893, 470, 969, 340, 800, 290) }, 1000 / 60);
             break;
         default:
             console.log("Erro (secalhar propositado) na animacao da bola.")
@@ -214,6 +215,10 @@ function resultado() {
         alert("Goal!");
     }
 
+    // Sons
+    arraySons[1].load(); // Golo
+    arraySons[2].load(); // Sad
+
     // Quando acabarem as tentativas perguntar se o jogador quer jogar novamente
     if (tentativas == 0) {
         if (golos >= 3) {
@@ -227,7 +232,7 @@ function resultado() {
         if (input == true) {
             location.reload();
         } else {
-            window.open("../home.html","_self");
+            window.open("../home.html", "_self");
         }
     }
 }
@@ -237,7 +242,7 @@ function resetVariaveis() {
     escolha = undefined; // Indica o quadrado selecionado pelo utilizador
     defesa = undefined; // Define se o guarda redes conseguiu defender ou nao
     redes = undefined; // O guarda redes escolhe um novo quadrado
-    
+
     // Guarda-redes
     GRskipFrames = 0; // As frames que o guarda-redes "salta" (nao usa)
     GRframeIndex = 0; // Index para defenir qual imagem da sprite usar
@@ -248,13 +253,17 @@ function resetVariaveis() {
     bolaPosX = 610; // Variaçao da bola em X
     bolaPosY = 583; // Variaçao da bola em Y
     bolaV = 0; // Variaçao da velocidade da bola
+
+    // Sons
+    arraySons[3].play(); // Apito
 }
 
 criarQuadrado(); // Cria as areas de clique
-//criarSom();
+criarSom(); // Cria os diversos sons
 guardaRedes(); // Define o quadrado que o guarda-redes ira defender
 
-/*//console.log(arraySons[0].src);
-arraySons[0].play();*/
+// Sons
+arraySons[3].play(); // Apito
+arraySons[0].play(); // Crowd
 
 canvas.addEventListener('click', click); // Evento clique do rato
