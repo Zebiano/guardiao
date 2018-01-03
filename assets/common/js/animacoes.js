@@ -56,10 +56,6 @@ function animBola(curvaPonto1, curvaPonto2, curvaPonto3, curvaPonto4, curvaPonto
 
     if (bolaV >= 1) {
         window.clearInterval(timerBola);
-        //Da reset a bola mas e instantaneo
-        bolaPosX = 610; // variaçao da bola em X
-        bolaPosY = 583; // variaçao da bola em Y
-        bolaV = 0;
         ctx.closePath();
     }
 }
@@ -79,6 +75,8 @@ function animGuardaRedes(e) {
         } else if (GRskipFrames == 50) {
             GRframeIndex++;
         } else if (GRskipFrames == 70) {
+            // Alert box a abrir os resultados
+            resultado();
             resetVariaveis();
         }
         GRskipFrames++;
@@ -89,6 +87,8 @@ function animGuardaRedes(e) {
         } else if (GRskipFrames == 25) {
             GRframeIndex++;
         } else if (GRskipFrames == 70) {
+            // Alert box a abrir os resultados
+            resultado();
             resetVariaveis();
         }
         GRskipFrames++;
@@ -97,6 +97,8 @@ function animGuardaRedes(e) {
         if (GRskipFrames == 0) {
             GRframeIndex++;
         } else if (GRskipFrames == 70) {
+            // Alert box a abrir os resultados
+            resultado();
             resetVariaveis();
         }
         GRskipFrames++;
@@ -131,7 +133,7 @@ function animPlateia() {
 }
 
 // Acrescenta a quantidade de golos
-function marcador(golos) {
+function marcadorGolos(golos) {
     ctx.beginPath();
     ctx.fillStyle = 'rgb(30, 40, 188)';
     ctx.rect(1160, 500, 100, 60);
@@ -154,8 +156,40 @@ function marcador(golos) {
     ctx.fillStyle = 'black';
     ctx.fillText(golos, 1175, 650, 86);
 
+    ctx.closePath();
+
     //console.log("ola");
 }
+
+// Mostra as tentativas restantes
+function marcadorTentativas(tentativas) {
+    ctx.beginPath();
+    ctx.fillStyle = 'rgb(224, 44, 44)';
+    ctx.rect(20, 500, 100, 60);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.fillStyle = 'white';
+    ctx.rect(20, 560, 100, 110);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.lineWidth = 7;
+    ctx.rect(20, 500, 100, 170);
+    ctx.stroke();
+
+    ctx.font = 'bold 40px Verdana';
+    ctx.fillText("Tentativas", 27, 545, 86);
+
+    ctx.font = 'bold 100px Verdana';
+    ctx.fillStyle = 'black';
+    ctx.fillText(tentativas, 33, 650, 86);
+
+    ctx.closePath();
+
+    //console.log("ola");
+}
+
 
 // Começar as animaçoes
 function comecarAnimacoes() {
@@ -184,7 +218,8 @@ function comecarAnimacoes() {
             animGuardaRedes(redes);
         }
 
-        marcador(golos); // Acrescenta a quantidade de golos
+        marcadorGolos(golos); // Acrescenta a quantidade de golos
+        marcadorTentativas(tentativas);
     }
 
     // Chamar a função para as animacoes
