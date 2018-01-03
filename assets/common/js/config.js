@@ -4,18 +4,13 @@ var redes; // Escolha do guarda-redes
 var GRskipFrames; // Frames que passamos a frente para a animacao do guarda-redes
 var quantidadeSons = 1; // Indica a quantidade de sons que serao gravados para o array. Sempre que se adiciona um novo som devia-se incrementar este numero por 1!
 
-/*var audio = new Audio();
-audio.src = "../assets/common/sounds/bg_sound.wav";
-audio.play();*/
+// -- ARRAYS -- \\
 
-// -- ARRAYS --
+var arrayQuadrados = []; // Array para os quadrados
+var arraySrcSons = []; // Array para os sources dos sons
+var arraySons = []; // Array para os sons
 
-// Array para os quadrados
-var arrayQuadrados = [];
-var arraySrcSons = [];
-var arraySons = [];
-
-// -- CONSTRUTORES --
+// -- CONSTRUTORES -- \\
 
 // Construtor dos quadrados
 function Quadrado(x, y, w, h) {
@@ -26,11 +21,11 @@ function Quadrado(x, y, w, h) {
     this.selected = false;
 }
 
-// -- GETTERS AND SETTERS --
+// -- GETTERS AND SETTERS -- \\
 
 // Define a dificuldade
 function setDificuldade(e) {
-    // Para isto usamos uma forma de guardar data no browser, nem todos sao compativeis po isso fazse este check com o if (parecido cmo a prof faz o check do canvas)
+    // Para isto usamos uma forma de guardar data no browser, nem todos sao compativeis por isso faz-se este check com o if (parecido cmo a prof faz o check do canvas)
     if (typeof (Storage) !== "undefined") {
         dificuldade = e;
 
@@ -44,8 +39,8 @@ function setDificuldade(e) {
             console.log("A dificuldade nao funcionou...")
         }
     } else {
-        alert("Sorry, your browser does not support Web Storage... If you want to play this game you'll need a browser that supports it. You can still play it on the 'easy' difficulty though!");
-        widnows.open("mainGame.html", "_self");
+        alert("Sorry, your browser does not support Web Storage... If you want to play this game you'll need a browser that supports it.");
+        window.open("mainGame.html", "_self");
     }
 }
 
@@ -64,7 +59,7 @@ function getGuardaRedes() {
     return redes;
 }
 
-// -- CODIGO --
+// -- CODIGO -- \\
 
 // Adiciona os quadrados ao array. Se for para mudar as coordenadas, muda-se aqui
 function criarQuadrado() {
@@ -79,7 +74,7 @@ function criarQuadrado() {
     arrayQuadrados.push(new Quadrado(731, 271, 189, 97));
 }
 
-// Adiciona as sources dos sons ao array. Se for para mudar os sons, muda-se aqui
+// Adiciona as sources dos sons ao array. Se for para mudar/adicionar sons, faz-se aqui
 function criarSom() {
     arraySrcSons.push("../assets/common/sounds/crowd.mp3");
     arraySrcSons.push("../assets/common/sounds/goal.mp3");
@@ -97,7 +92,7 @@ function criarSom() {
     arraySons[0].loop = true; // Repetir
 
     // Golo
-    arraySons[1].volume = 0.7; // Apito
+    arraySons[1].volume = 0.7; // Baixar volume
 
     // Apito
     arraySons[3].volume = 0.5; // Baixar volume

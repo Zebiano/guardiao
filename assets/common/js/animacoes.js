@@ -56,11 +56,9 @@ function animBola(curvaPonto1, curvaPonto2, curvaPonto3, curvaPonto4, curvaPonto
     bolaPosX = ((1 - bolaV) * ((1 - bolaV) * ((1 - bolaV) * x0 + bolaV * x1) + bolaV * ((1 - bolaV) * x1 + bolaV * x2)) + bolaV * ((1 - bolaV) * ((1 - bolaV) * x1 + bolaV * x2) + bolaV * ((1 - bolaV) * x2 + bolaV * x3)));
     bolaPosY = (1 - bolaV) * ((1 - bolaV) * ((1 - bolaV) * y0 + bolaV * y1) + bolaV * ((1 - bolaV) * y1 + bolaV * y2)) + bolaV * ((1 - bolaV) * ((1 - bolaV) * y1 + bolaV * y2) + bolaV * ((1 - bolaV) * y2 + bolaV * y3));
 
-    //console.log("olaaaaaaaa");
     if (bolaV >= 1) {
         window.clearInterval(timerBola);
         ctx.closePath();
-        //console.log("olaaaaaaa");
     }
 }
 
@@ -92,12 +90,10 @@ function animGuardaRedes(e) {
                 GRx = GRx + 50;
             }
         } else if (GRskipFrames == 52) {
-            //console.log("olaaaaaaa 2");
             resultado(); // Alert box a abrir os resultados
             resetVariaveis(); // Reset as variaveis
         }
         GRskipFrames++;
-        //console.log("olaaaaaaa 2");
     } else if (e == 2 || e == 4 || e == 6 || e == 8) { // 2 frames/imagens
         ctx.drawImage(imgGuardaRedes, GRframeIndex * 288, 0, 288, 288, GRx, GRy, 288, 288);
         if (GRskipFrames == 0) {
@@ -113,23 +109,19 @@ function animGuardaRedes(e) {
                 GRy = GRy - 20;
             }
         } else if (GRskipFrames == 52) {
-            //console.log("olaaaaaaa 2");
             resultado(); // Alert box a abrir os resultados
             resetVariaveis(); // Reset as variaveis
         }
         GRskipFrames++;
-        //console.log("olaaaaaaa 2");
     } else { // 1 frame/imagem
         ctx.drawImage(imgGuardaRedes, GRframeIndex * 288, 0, 288, 288, GRx, GRy, 288, 288);
         if (GRskipFrames == 0) {
             GRframeIndex++;
         } else if (GRskipFrames == 52) {
-            //console.log("olaaaaaaa 2");
             resultado(); // Alert box a abrir os resultados
             resetVariaveis(); // Reset as variaveis
         }
         GRskipFrames++;
-        //console.log("olaaaaaaa 2");
     }
 }
 
@@ -185,8 +177,6 @@ function marcadorGolos(golos) {
     ctx.fillText(golos, 1175, 650, 86);
 
     ctx.closePath();
-
-    //console.log("ola");
 }
 
 // Mostra as tentativas restantes
@@ -214,8 +204,6 @@ function marcadorTentativas(tentativas) {
     ctx.fillText(tentativas, 33, 650, 86);
 
     ctx.closePath();
-
-    //console.log("ola");
 }
 
 
@@ -236,22 +224,20 @@ function comecarAnimacoes(e) {
         ctx.drawImage(imgBaliza, 0, 0); // Desenhar a baliza
         ctx.drawImage(imgBola, bolaPosX, bolaPosY); // Desenhar a bola
 
-        //console.log("olaaaaaaa");
-
         if (redes == undefined) {
             imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite1.png';
             ctx.drawImage(imgGuardaRedes, 0, 0, 288, 288, 500, 100, 288, 288);
         } else {
-            //console.log("olaaaaaaa");
             animGuardaRedes(redes);
         }
 
         marcadorGolos(golos); // Acrescenta a quantidade de golos
-        marcadorTentativas(tentativas);
+        marcadorTentativas(tentativas); // Mostra as tentativas restantes
     }
 
     // Chamar a função para as animacoes (comentar a linha abaixo para parar as animacoes)
     timer = window.setInterval(animacoes, 1000 / 60);
 }
 
+// Chamar a função para comecar as animacoes
 comecarAnimacoes();
