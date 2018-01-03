@@ -1,37 +1,38 @@
 // Variaveis Globais
-var dificuldade = getDificuldade();
+var dificuldade = getDificuldade(); // Obtem a dificuldade
+redes = getGuardaRedes(); // Define a variavel do redes
 
 // Image()
-var imgPublicidade = new Image()
 var imgBaliza = new Image()
-var imgGuardaRedes = new Image();
 var imgBola = new Image()
 var imgPlateia = new Image()
+var imgPublicidade = new Image()
+var imgGuardaRedes = new Image();
 
 // Image() sources
 imgBaliza.src = '../assets/common/img/baliza.png';
-imgPublicidade.src = '../assets/common/img/placares.png';
 imgBola.src = '../assets/common/img/bola.png';
 imgPlateia.src = '../assets/common/img/pessoas_completo.png';
+imgPublicidade.src = '../assets/common/img/placares.png';
 
 // Variaveis do canvas
 var canvasX = 0;
 var canvasY = 0;
 
 // Variaveis para a bola
-var bolaV = 0;
-var bolaPosX = 610; // variaçao da bola em X
-var bolaPosY = 583; // variaçao da bola em Y
+var bolaV = 0; // Variaçao da velocidade da bola
+var bolaPosX = 610; // Posiçao da bola em X
+var bolaPosY = 583; // Posicao da bola em Y
 
 // Variaveis para a plateia
 var plateiaY = 0
 var plateiaV = 0.8
 
 // Variaveis para o guarda-redes
-var GRskipFrames = 0;
-var GRframeIndex = -1;
-var GRx = 500;
-var GRy = 100;
+var GRskipFrames = 0; // Frames que passamos a frente para a animacao do guarda-redes
+var GRframeIndex = -1; // Index para desenhar a imagem correta das sprites
+var GRx = 500; // Posicao do guarda-redes em X
+var GRy = 100; // Posicao do guarda-redes em Y
 
 // Aniamcao da Bola
 function animBola(curvaPonto1, curvaPonto2, curvaPonto3, curvaPonto4, curvaPonto5, curvaPonto6, curvaPonto7, curvaPonto8) {
@@ -48,15 +49,17 @@ function animBola(curvaPonto1, curvaPonto2, curvaPonto3, curvaPonto4, curvaPonto
     ctx.beginPath();
     ctx.drawImage(imgBola, bolaPosX, bolaPosY)
 
-    bolaV += 0.01
+    bolaV += 0.02
     //console.log("V: " + bolaV);
 
     bolaPosX = ((1 - bolaV) * ((1 - bolaV) * ((1 - bolaV) * x0 + bolaV * x1) + bolaV * ((1 - bolaV) * x1 + bolaV * x2)) + bolaV * ((1 - bolaV) * ((1 - bolaV) * x1 + bolaV * x2) + bolaV * ((1 - bolaV) * x2 + bolaV * x3)));
     bolaPosY = (1 - bolaV) * ((1 - bolaV) * ((1 - bolaV) * y0 + bolaV * y1) + bolaV * ((1 - bolaV) * y1 + bolaV * y2)) + bolaV * ((1 - bolaV) * ((1 - bolaV) * y1 + bolaV * y2) + bolaV * ((1 - bolaV) * y2 + bolaV * y3));
 
+    //console.log("olaaaaaaaa");
     if (bolaV >= 1) {
         window.clearInterval(timerBola);
         ctx.closePath();
+        //console.log("olaaaaaaa");
     }
 }
 
@@ -65,40 +68,67 @@ function animGuardaRedes(e) {
     // Source
     imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite' + e + '.png';
 
-    // Dependendo da escolha do redes, ou sao uma ou duas ou tres frames
-    if (e == 1 || e == 3 || e == 7 || e == 9) { // 3 frames
+    // Caso queiramos que o redes va sempre ao mesmo quadrado, define-se o quadrado aqui (Na consola fica errado o "Redes: ")
+    //redes = 4;
+
+    // Dependendo da escolha do redes, ou sao uma ou duas ou tres frames/imagens
+    if (e == 1 || e == 3 || e == 7 || e == 9) { // 3 frames/imagens
         ctx.drawImage(imgGuardaRedes, GRframeIndex * 288, 0, 288, 288, GRx, GRy, 288, 288);
         if (GRskipFrames == 0) {
             GRframeIndex++;
-        } else if (GRskipFrames == 25) {
+        } else if (GRskipFrames == 20) {
             GRframeIndex++;
-        } else if (GRskipFrames == 50) {
+            if (e == 1 || e == 7) {
+                GRx = GRx - 50;
+            } else {
+                GRx = GRx + 50;
+            }
+        } else if (GRskipFrames == 40) {
             GRframeIndex++;
-        } else if (GRskipFrames == 70) {
+            if (e == 1 || e == 7) {
+                GRx = GRx - 50;
+            } else {
+                GRx = GRx + 50;
+            }
+        } else if (GRskipFrames == 52) {
+            //console.log("olaaaaaaa 2");
             resultado(); // Alert box a abrir os resultados
             resetVariaveis(); // Reset as variaveis
         }
         GRskipFrames++;
-    } else if (e == 2 || e == 4 || e == 6 || e == 8) { // 2 frames
+        //console.log("olaaaaaaa 2");
+    } else if (e == 2 || e == 4 || e == 6 || e == 8) { // 2 frames/imagens
         ctx.drawImage(imgGuardaRedes, GRframeIndex * 288, 0, 288, 288, GRx, GRy, 288, 288);
         if (GRskipFrames == 0) {
             GRframeIndex++;
-        } else if (GRskipFrames == 25) {
+        } else if (GRskipFrames == 30) {
             GRframeIndex++;
-        } else if (GRskipFrames == 70) {
+            if (e == 4) {
+                GRx = GRx - 100;
+            } else if (e == 6) {
+                GRx = GRx + 80;
+            } else if (e == 8) {
+                GRx = GRx - 30;
+                GRy = GRy - 20;
+            }
+        } else if (GRskipFrames == 52) {
+            //console.log("olaaaaaaa 2");
             resultado(); // Alert box a abrir os resultados
             resetVariaveis(); // Reset as variaveis
         }
         GRskipFrames++;
-    } else { // 1 frame
+        //console.log("olaaaaaaa 2");
+    } else { // 1 frame/imagem
         ctx.drawImage(imgGuardaRedes, GRframeIndex * 288, 0, 288, 288, GRx, GRy, 288, 288);
         if (GRskipFrames == 0) {
             GRframeIndex++;
-        } else if (GRskipFrames == 70) {
+        } else if (GRskipFrames == 52) {
+            //console.log("olaaaaaaa 2");
             resultado(); // Alert box a abrir os resultados
             resetVariaveis(); // Reset as variaveis
         }
         GRskipFrames++;
+        //console.log("olaaaaaaa 2");
     }
 }
 
@@ -205,13 +235,13 @@ function comecarAnimacoes() {
         ctx.drawImage(imgBaliza, 0, 0); // Desenhar a baliza
         ctx.drawImage(imgBola, bolaPosX, bolaPosY); // Desenhar a bola
 
-        // Define a variavel do redes
-        redes = getGuardaRedes();
+        //console.log("olaaaaaaa");
 
         if (redes == undefined) {
             imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite1.png';
             ctx.drawImage(imgGuardaRedes, 0, 0, 288, 288, 500, 100, 288, 288);
         } else {
+            //console.log("olaaaaaaa");
             animGuardaRedes(redes);
         }
 

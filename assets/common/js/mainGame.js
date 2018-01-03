@@ -6,37 +6,13 @@ var golos = 0; // Define a quantidade de golos que o jogador marca
 var tentativas = 5; // Define a quantidade de tentativas restantes
 var input; // Define se o jogador quer jogar novamente
 var result; // Define se o jogador ganhou ou nao
-var dificuldade = getDificuldade();
+
+var dificuldade = getDificuldade(); // Obtem a dificuldade do jogo
 console.log("Dificuldade: " + dificuldade);
 
 // Coordenadas do rato
 var mouseX;
 var mouseY;
-
-// Array para os quadrados
-var arrayQuadrados = [];
-
-// Construtor dos quadrados
-function Quadrado(x, y, w, h) {
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
-    this.selected = false;
-}
-
-// Adiciona os quadrados ao array. Se for para mudar as coordenadas, muda-se aqui
-function criarQuadrado() {
-    arrayQuadrados.push(new Quadrado(357, 81, 189, 97));
-    arrayQuadrados.push(new Quadrado(544, 81, 189, 97));
-    arrayQuadrados.push(new Quadrado(731, 81, 189, 97));
-    arrayQuadrados.push(new Quadrado(357, 176, 189, 97));
-    arrayQuadrados.push(new Quadrado(544, 176, 189, 97));
-    arrayQuadrados.push(new Quadrado(731, 176, 189, 97));
-    arrayQuadrados.push(new Quadrado(357, 271, 189, 97));
-    arrayQuadrados.push(new Quadrado(544, 271, 189, 97));
-    arrayQuadrados.push(new Quadrado(731, 271, 189, 97));
-}
 
 // O Guarda-redes escolhe qual quadrado defender
 function guardaRedes(e) {
@@ -196,36 +172,37 @@ function click(e) {
     }
 
     // Atribuir movimento da bola a cada escolha
+    //console.log("olaaaaaaa 2");
     switch (escolha) {
         case 1:
-            timerBola = window.setInterval(function () { animBola(610, 583, 368, 450, 280, 186, 429, 110) }, 10);
+            timerBola = window.setInterval(function () { animBola(610, 583, 368, 450, 280, 186, 429, 110) }, 1000/60);
             break;
         case 2:
-            timerBola = window.setInterval(function () { animBola(610, 583, 485, 444, 390, 216, 625, 110) }, 10);
+            timerBola = window.setInterval(function () { animBola(610, 583, 485, 444, 390, 216, 625, 110) }, 1000/60);
             break;
         case 3:
-            timerBola = window.setInterval(function () { animBola(610, 583, 843, 520, 975, 113, 800, 110) }, 10);
+            timerBola = window.setInterval(function () { animBola(610, 583, 843, 520, 975, 113, 800, 110) }, 1000/60);
             break;
         case 4:
-            timerBola = window.setInterval(function () { animBola(610, 583, 474, 520, 355, 340, 429, 195) }, 10);
+            timerBola = window.setInterval(function () { animBola(610, 583, 474, 520, 355, 340, 429, 195) }, 1000/60);
             break;
         case 5:
-            timerBola = window.setInterval(function () { animBola(610, 583, 841, 410, 466, 331, 625, 195) }, 10);
+            timerBola = window.setInterval(function () { animBola(610, 583, 841, 410, 466, 331, 625, 195) }, 1000/60);
             break;
         case 6:
-            timerBola = window.setInterval(function () { animBola(610, 583, 830, 547, 954, 306, 800, 195) }, 10);
+            timerBola = window.setInterval(function () { animBola(610, 583, 830, 547, 954, 306, 800, 195) }, 1000/60);
             break;
         case 7:
-            timerBola = window.setInterval(function () { animBola(610, 583, 479, 564, 456, 259, 429, 290) }, 10);
+            timerBola = window.setInterval(function () { animBola(610, 583, 479, 564, 456, 259, 429, 290) }, 1000/60);
             break;
         case 8:
-            timerBola = window.setInterval(function () { animBola(610, 583, 700, 476, 690, 352, 625, 290) }, 10);
+            timerBola = window.setInterval(function () { animBola(610, 583, 700, 476, 690, 352, 625, 290) }, 1000/60);
             break;
         case 9:
-            timerBola = window.setInterval(function () { animBola(610, 583, 893, 470, 969, 340, 800, 290) }, 10);
+            timerBola = window.setInterval(function () { animBola(610, 583, 893, 470, 969, 340, 800, 290) }, 1000/60);
             break;
         default:
-            console.log("Erro na animacao da bola.")
+            console.log("Erro (secalhar propositado) na animacao da bola.")
     }
 }
 
@@ -245,8 +222,8 @@ function resultado() {
             result = "lost";
         }
 
+        // Pergunta ao jogador se quer jogar novamente ou nao e indica se ganhou ou nao
         input = confirm("Game over. You " + result + "! Wanna play again?");
-
         if (input == true) {
             location.reload();
         } else {
@@ -260,14 +237,24 @@ function resetVariaveis() {
     escolha = undefined; // Indica o quadrado selecionado pelo utilizador
     defesa = undefined; // Define se o guarda redes conseguiu defender ou nao
     redes = undefined; // O guarda redes escolhe um novo quadrado
+    
+    // Guarda-redes
     GRskipFrames = 0; // As frames que o guarda-redes "salta" (nao usa)
     GRframeIndex = 0; // Index para defenir qual imagem da sprite usar
+    GRx = 500; // Posicao do meio do gaurda-redes
+    GRy = 100; // Posicao do meio do gaurda-redes
+
+    // Bola
     bolaPosX = 610; // Variaçao da bola em X
     bolaPosY = 583; // Variaçao da bola em Y
     bolaV = 0; // Variaçao da velocidade da bola
 }
 
 criarQuadrado(); // Cria as areas de clique
+//criarSom();
 guardaRedes(); // Define o quadrado que o guarda-redes ira defender
+
+/*//console.log(arraySons[0].src);
+arraySons[0].play();*/
 
 canvas.addEventListener('click', click); // Evento clique do rato
