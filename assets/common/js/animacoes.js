@@ -69,8 +69,8 @@ function animGuardaRedes(e) {
     // Source
     imgGuardaRedes.src = '../assets/common/sprites/keeper/Sprite' + e + '.png';
 
-    // Dependendo da escolha do redes, ou sao duas ou tres frames
-    if (e == 1 || e == 3 || e == 7 || e == 9) {
+    // Dependendo da escolha do redes, ou sao uma ou duas ou tres frames
+    if (e == 1 || e == 3 || e == 7 || e == 9) { // 3 frames
         ctx.drawImage(imgGuardaRedes, GRframeIndex * 288, 0, 288, 288, GRx, GRy, 288, 288);
         if (GRskipFrames == 0) {
             GRframeIndex++;
@@ -78,20 +78,26 @@ function animGuardaRedes(e) {
             GRframeIndex++;
         } else if (GRskipFrames == 50) {
             GRframeIndex++;
+        } else if (GRskipFrames == 70) {
+            resetVariaveis();
         }
         GRskipFrames++;
-    } else if (e == 5) {
-        ctx.drawImage(imgGuardaRedes, GRframeIndex * 288, 0, 288, 288, GRx, GRy, 288, 288);
-        if (GRskipFrames == 0) {
-            GRframeIndex++;
-        }
-        GRskipFrames++;
-    } else {
+    } else if (e == 2 || e == 4 || e == 6 || e == 8) { // 2 frames
         ctx.drawImage(imgGuardaRedes, GRframeIndex * 288, 0, 288, 288, GRx, GRy, 288, 288);
         if (GRskipFrames == 0) {
             GRframeIndex++;
         } else if (GRskipFrames == 25) {
             GRframeIndex++;
+        } else if (GRskipFrames == 70) {
+            resetVariaveis();
+        }
+        GRskipFrames++;
+    } else { // 1 frame
+        ctx.drawImage(imgGuardaRedes, GRframeIndex * 288, 0, 288, 288, GRx, GRy, 288, 288);
+        if (GRskipFrames == 0) {
+            GRframeIndex++;
+        } else if (GRskipFrames == 70) {
+            resetVariaveis();
         }
         GRskipFrames++;
     }
@@ -168,6 +174,7 @@ function comecarAnimacoes() {
         ctx.drawImage(imgBaliza, 0, 0); // Desenhar a baliza
         ctx.drawImage(imgBola, bolaPosX, bolaPosY); // Desenhar a bola
 
+        // Define a variavel do redes
         redes = getGuardaRedes();
 
         if (redes == undefined) {

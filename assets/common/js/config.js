@@ -1,6 +1,7 @@
 // Variaveis Globais
 var dificuldade;
 var redes;
+var GRskipFrames;
 
 // Define a dificuldade
 function setDificuldade(e) {
@@ -28,10 +29,12 @@ function getDificuldade() {
     return localStorage.getItem("lastname");
 }
 
+// Define a escolha do guarda-redes
 function setGuardaRedes(e) {
     redes = e;
 }
 
+// Obtem a escolha do guarda-redes
 function getGuardaRedes() {
     return redes;
 }

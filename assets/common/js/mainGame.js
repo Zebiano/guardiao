@@ -233,12 +233,6 @@ function click(e) {
         default:
             console.log("Erro na animacao da bola.")
     }
-    
-    // Da reset as variaveis
-    if (GRskipFrames == 300) {
-        resetVariaveis();
-    }
-    //resetVariaveis();
 }
 
 // Define se o utilizador marcou ou nao
@@ -252,9 +246,11 @@ function resultado() {
 
 // Da reset as variaveis
 function resetVariaveis() {
-    var escolha = 0; // Indica o quadrado selecionado pelo utilizador
-    var defesa; // Define se o guarda redes conseguiu defender ou nao
-    guardaRedes(undefined); // O guarda redes escolhe um novo quadrado
+    escolha = undefined; // Indica o quadrado selecionado pelo utilizador
+    defesa = undefined; // Define se o guarda redes conseguiu defender ou nao
+    redes = undefined; // O guarda redes escolhe um novo quadrado
+    GRskipFrames = 0;
+    GRframeIndex = 0;
 }
 
 criarQuadrado(); // Cria as areas de clique
