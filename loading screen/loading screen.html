@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Loading Screen</title>
+</head>
+
+<body>
+    <center>
+        <svg width="1280" height="720" style="background-image: url(ceu.jpeg)">
+            <defs>
+                <filter id='filtro'>
+                    <feMorphology in='SourceGraphic' operator='dilate' radius='2' result='expand' />
+
+                    <feOffset in='expand' dx='1' dy='1' result='shadow_1' />
+                    <feOffset in='expand' dx='2' dy='2' result='shadow_2' />
+                    <feOffset in='expand' dx='3' dy='3' result='shadow_3' />
+                    <feOffset in='expand' dx='4' dy='4' result='shadow_4' />
+                    <feOffset in='expand' dx='5' dy='5' result='shadow_5' />
+                    <feOffset in='expand' dx='6' dy='6' result='shadow_6' />
+                    <feOffset in='expand' dx='7' dy='7' result='shadow_7' />
+
+                    <feMerge result='shadow'>
+                        <feMergeNode in='expand' />
+                        <feMergeNode in='shadow_1' />
+                        <feMergeNode in='shadow_2' />
+                        <feMergeNode in='shadow_3' />
+                        <feMergeNode in='shadow_4' />
+                        <feMergeNode in='shadow_5' />
+                        <feMergeNode in='shadow_6' />
+                        <feMergeNode in='shadow_7' />
+                    </feMerge>
+
+                    <feFlood flood-color='#12318e' />
+                    <feComposite in2='shadow' operator='in' result='shadow' />
+
+                    <feMorphology in='shadow' operator='dilate' radius='1' result='border' />
+                    <feFlood flood-color='#35322a' result='border_color' />
+                    <feComposite in2='border' operator='in' result='border' />
+
+                    <feOffset in='border' dx='1' dy='1' result='secondShadow_1' />
+                    <feOffset in='border' dx='2' dy='2' result='secondShadow_2' />
+                    <feOffset in='border' dx='3' dy='3' result='secondShadow_3' />
+                    <feOffset in='border' dx='4' dy='4' result='secondShadow_4' />
+                    <feOffset in='border' dx='5' dy='5' result='secondShadow_5' />
+                    <feOffset in='border' dx='6' dy='6' result='secondShadow_6' />
+                    <feOffset in='border' dx='7' dy='7' result='secondShadow_7' />
+                    <feOffset in='border' dx='8' dy='8' result='secondShadow_8' />
+                    <feOffset in='border' dx='9' dy='9' result='secondShadow_9' />
+                    <feOffset in='border' dx='10' dy='10' result='secondShadow_10' />
+                    <feOffset in='border' dx='11' dy='11' result='secondShadow_11' />
+
+                    <feMerge result='secondShadow'>
+                        <feMergeNode in='border' />
+                        <feMergeNode in='secondShadow_1' />
+                        <feMergeNode in='secondShadow_2' />
+                        <feMergeNode in='secondShadow_3' />
+                        <feMergeNode in='secondShadow_4' />
+                        <feMergeNode in='secondShadow_5' />
+                        <feMergeNode in='secondShadow_6' />
+                        <feMergeNode in='secondShadow_7' />
+                        <feMergeNode in='secondShadow_8' />
+                        <feMergeNode in='secondShadow_9' />
+                        <feMergeNode in='secondShadow_10' />
+                        <feMergeNode in='secondShadow_11' />
+                    </feMerge>
+
+                    <feImage x='0' y='0' width='600' height='200' xlink:href='https://s3-us-west-2.amazonaws.com/s.cdpn.io/78779/stripes.svg'
+                    />
+                    <feComposite in2='secondShadow' operator='in' result='secondShadow' />
+
+                    <feMerge>
+                        <feMergeNode in='secondShadow' />
+                        <feMergeNode in='border' />
+                        <feMergeNode in='shadow' />
+                        <feMergeNode in='SourceGraphic' />
+                    </feMerge>
+                </filter>
+            </defs>
+            <image xlink:href="luzinha.png" transform="rotate()" x="0%" y="0">
+                <animateTransform attributeType="xml" attributeName="transform" type="rotate" values="0;-1;1;0" dur="4s" repeatCount="indefinite" />
+            </image>
+            <image xlink:href="luzinha2.png" x="0%" y="0">
+                    <animateTransform attributeType="xml" attributeName="transform" type="rotate" values="0;1;-1;0" dur="4s" repeatCount="indefinite" />
+            </image>
+
+            <!--GUARDA REDES DEFENDE-->
+            <image xlink:href="senhor3.png" x="0" y="600" height="50%" width="50%">
+                <animate attributeName="x" values="0; 200; 500;" dur="2s" fill="freeze" />
+                <animate attributeName="y" values="700; 200; 700;" dur="2s" fill="freeze" />
+            </image>
+
+            <image xlink:href="bola.png" x="1000" y="500" height="8%" width="8%">
+                <animate attributeName="x" values="1250; 590; 1290;" dur="2s" fill="freeze" />
+                <animate attributeName="y" values="500; 250;0;" dur="2s" fill="freeze" />
+            </image>
+
+            <!--GUARDA REDES ENTRA EM CENA-->
+            <image xlink:href="senhor1.png" x="13%" y="-500" height="75%" width="75%">
+                <animate attributeName="y" from="-500" to="10%" begin="3.5s" dur="0.5s" fill="freeze" />
+                <animate attributeName="y" values="10%; -5%; 10%;" begin="4s" dur="0.5s" fill="freeze" />
+                <animate attributeName="height" values="75%;110%;75%;" begin="4s" dur="0.5s" fill="freeze" />
+            </image>
+            <!--TEXTO APARECE E SALTA-->
+            <text font-size="120" text-anchor="middle" alignment-baseline="central" font-family="Verdana" fill="yellow" x="50%" y="-50%"
+                filter="url(#filtro)">Guardião
+                <animate attributeName="y" from="-50%" to="50%" begin="2s" dur="0.5s" fill="freeze" />
+                <animate attributeName="font-size" values="120; 100;120;" begin="2.5s" dur="0.5s" fill="freeze" />
+                <animate attributeName="y" values="50%; 47%; 50%;" begin="4s" dur="0.4s" fill="freeze" />
+            </text>
+
+
+        </svg>
+    </center>
+</body>
+
+</html>
